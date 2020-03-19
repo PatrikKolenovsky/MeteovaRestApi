@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SMART\\MeteovaRestApi\\MeteovaRestApi\\MeteovaRestApi.csproj": {}
+    "D:\\Projects\\MeteovaRestApi\\MeteovaRestApi\\MeteovaRestApi.csproj": {}
   },
   "projects": {
-    "C:\\SMART\\MeteovaRestApi\\MeteovaRestApi\\MeteovaRestApi.csproj": {
+    "D:\\Projects\\MeteovaRestApi\\MeteovaRestApi\\MeteovaRestApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SMART\\MeteovaRestApi\\MeteovaRestApi\\MeteovaRestApi.csproj",
+        "projectUniqueName": "D:\\Projects\\MeteovaRestApi\\MeteovaRestApi\\MeteovaRestApi.csproj",
         "projectName": "MeteovaRestApi",
-        "projectPath": "C:\\SMART\\MeteovaRestApi\\MeteovaRestApi\\MeteovaRestApi.csproj",
-        "packagesPath": "C:\\Users\\Lukas\\.nuget\\packages\\",
-        "outputPath": "C:\\SMART\\MeteovaRestApi\\MeteovaRestApi\\obj\\",
+        "projectPath": "D:\\Projects\\MeteovaRestApi\\MeteovaRestApi\\MeteovaRestApi.csproj",
+        "packagesPath": "C:\\Users\\Lukáš\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\MeteovaRestApi\\MeteovaRestApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Lukas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lukáš\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,7 +93,7 @@
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.0.2, 3.0.2]"
+              "version": "[3.0.3, 3.0.3]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
@@ -112,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

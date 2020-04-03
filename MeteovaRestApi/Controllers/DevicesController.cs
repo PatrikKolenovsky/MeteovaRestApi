@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MeteovaRestApi.Models;
+using Entities;
+using Entities.Models;
 
 namespace MeteovaRestApi.Controllers
 {
@@ -13,9 +14,9 @@ namespace MeteovaRestApi.Controllers
     [ApiController]
     public class DevicesController : ControllerBase
     {
-        private readonly sg1Context _context;
+        private readonly Sg1Context _context;
 
-        public DevicesController(sg1Context context)
+        public DevicesController(Sg1Context context)
         {
             _context = context;
         }

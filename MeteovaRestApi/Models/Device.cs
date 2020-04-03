@@ -19,6 +19,7 @@ namespace MeteovaRestApi.Models
         public int ComTypeId { get; set; }
         public bool InUse { get; set; }
         public string Description { get; set; }
+        public string DeviceLocation { get; set; }
 
         public virtual Comtype ComType { get; set; }
         public virtual Devicename DeviceName { get; set; }

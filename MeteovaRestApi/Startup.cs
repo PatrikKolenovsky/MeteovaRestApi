@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using MeteovaRestApi.Extensions;
@@ -15,7 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-
+using NLog;
 
 namespace MeteovaRestApi
 {
@@ -23,6 +24,7 @@ namespace MeteovaRestApi
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -33,6 +35,8 @@ namespace MeteovaRestApi
         {
             services.ConfigureCors();
             services.ConfigureIISIntegration();
+
+            services.ConfigureLoggerService();
 
             services.AddDbContext<sg1Context>(options =>
                 options.UseMySql(Configuration.GetConnectionString("SG1Database")));

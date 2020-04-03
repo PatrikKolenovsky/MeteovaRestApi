@@ -33,6 +33,11 @@ namespace MeteovaRestApi.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseMySql("server=localhost;port=3306;database=sg1;uid=root", x => x.ServerVersion("10.4.11-mariadb"));
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,8 +53,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
             });
 
             modelBuilder.Entity<Device>(entity =>
@@ -70,8 +75,8 @@ namespace MeteovaRestApi.Models
                     .IsRequired()
                     .HasColumnName("ComServIP")
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.ComServPort).HasColumnType("int(11)");
 
@@ -81,8 +86,14 @@ namespace MeteovaRestApi.Models
 
                 entity.Property(e => e.Description)
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
+
+                entity.Property(e => e.DeviceLocation)
+                    .HasColumnName("device_location")
+                    .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.DeviceNameId)
                     .HasColumnName("DeviceNameID")
@@ -92,8 +103,8 @@ namespace MeteovaRestApi.Models
                     .IsRequired()
                     .HasColumnName("IP")
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Port).HasColumnType("int(11)");
 
@@ -119,8 +130,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
             });
 
             modelBuilder.Entity<Location>(entity =>
@@ -134,8 +145,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
             });
 
             modelBuilder.Entity<Maker>(entity =>
@@ -149,8 +160,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
             });
 
             modelBuilder.Entity<Module>(entity =>
@@ -172,8 +183,8 @@ namespace MeteovaRestApi.Models
 
                 entity.Property(e => e.Description)
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.DeviceId)
                     .HasColumnName("DeviceID")
@@ -190,8 +201,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.HasOne(d => d.Device)
                     .WithMany(p => p.Module)
@@ -222,8 +233,8 @@ namespace MeteovaRestApi.Models
 
                 entity.Property(e => e.Description)
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.MakerId)
                     .HasColumnName("MakerID")
@@ -232,8 +243,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.HasOne(d => d.Maker)
                     .WithMany(p => p.Moduletype)
@@ -256,8 +267,8 @@ namespace MeteovaRestApi.Models
                     .IsRequired()
                     .HasColumnName("clientID")
                     .HasColumnType("varchar(20)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.DateTimeCreated)
                     .HasColumnName("DateTime_created")
@@ -271,15 +282,15 @@ namespace MeteovaRestApi.Models
                     .IsRequired()
                     .HasColumnName("message")
                     .HasColumnType("varchar(100)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Topic)
                     .IsRequired()
                     .HasColumnName("topic")
                     .HasColumnType("varchar(50)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
             });
 
             modelBuilder.Entity<Valint>(entity =>
@@ -355,8 +366,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Value)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.VariableId)
                     .HasColumnName("VariableID")
@@ -429,8 +440,8 @@ namespace MeteovaRestApi.Models
 
                 entity.Property(e => e.Description)
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.ModuleId)
                     .HasColumnName("ModuleID")
@@ -439,14 +450,14 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.Pub)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
 
                 entity.Property(e => e.VarDefId)
                     .HasColumnName("VarDefID")
@@ -474,8 +485,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
             });
 
             modelBuilder.Entity<Vartype>(entity =>
@@ -489,8 +500,8 @@ namespace MeteovaRestApi.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasColumnType("varchar(45)")
-                    .HasCollation("utf8_general_ci")
-                    .HasCharSet("utf8");
+                    .HasCharSet("utf8")
+                    .HasCollation("utf8_general_ci");
             });
 
             OnModelCreatingPartial(modelBuilder);

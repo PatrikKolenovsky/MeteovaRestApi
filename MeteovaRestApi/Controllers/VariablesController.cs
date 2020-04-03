@@ -12,48 +12,48 @@ namespace MeteovaRestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ModulesController : ControllerBase
+    public class VariablesController : ControllerBase
     {
         private readonly Sg1Context _context;
 
-        public ModulesController(Sg1Context context)
+        public VariablesController(Sg1Context context)
         {
             _context = context;
         }
 
-        // GET: api/Modules
+        // GET: api/Variables
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Module>>> GetModule()
+        public async Task<ActionResult<IEnumerable<Variable>>> GetVariable()
         {
-            return await _context.Module.ToListAsync();
+            return await _context.Variable.ToListAsync();
         }
 
-        // GET: api/Modules/5
+        // GET: api/Variables/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Module>> GetModule(int id)
+        public async Task<ActionResult<Variable>> GetVariable(int id)
         {
-            var @module = await _context.Module.FindAsync(id);
+            var variable = await _context.Variable.FindAsync(id);
 
-            if (@module == null)
+            if (variable == null)
             {
                 return NotFound();
             }
 
-            return @module;
+            return variable;
         }
 
-        // PUT: api/Modules/5
+        // PUT: api/Variables/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModule(int id, Module @module)
+        public async Task<IActionResult> PutVariable(int id, Variable variable)
         {
-            if (id != @module.ModuleId)
+            if (id != variable.VariableId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(@module).State = EntityState.Modified;
+            _context.Entry(variable).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace MeteovaRestApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModuleExists(id))
+                if (!VariableExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace MeteovaRestApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Modules
+        // POST: api/Variables
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Module>> PostModule(Module @module)
+        public async Task<ActionResult<Variable>> PostVariable(Variable variable)
         {
-            _context.Module.Add(@module);
+            _context.Variable.Add(variable);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetModule", new { id = @module.ModuleId }, @module);
+            return CreatedAtAction("GetVariable", new { id = variable.VariableId }, variable);
         }
 
-        // DELETE: api/Modules/5
+        // DELETE: api/Variables/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Module>> DeleteModule(int id)
+        public async Task<ActionResult<Variable>> DeleteVariable(int id)
         {
-            var @module = await _context.Module.FindAsync(id);
-            if (@module == null)
+            var variable = await _context.Variable.FindAsync(id);
+            if (variable == null)
             {
                 return NotFound();
             }
 
-            _context.Module.Remove(@module);
+            _context.Variable.Remove(variable);
             await _context.SaveChangesAsync();
 
-            return @module;
+            return variable;
         }
 
-        private bool ModuleExists(int id)
+        private bool VariableExists(int id)
         {
-            return _context.Module.Any(e => e.ModuleId == id);
+            return _context.Variable.Any(e => e.VariableId == id);
         }
     }
 }

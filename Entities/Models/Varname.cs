@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MeteovaRestApi.Models
+namespace Entities.Models
 {
     public partial class Varname
     {

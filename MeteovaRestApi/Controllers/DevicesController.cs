@@ -1,47 +1,112 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MeteovaRestApi.Models;
+using Entities;
+using Entities.Models;
+using Contracts;
+using AutoMapper;
+using Entities.DataTransferObjects;
+using System.Collections.Generic;
 
 namespace MeteovaRestApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/device")]
     [ApiController]
     public class DevicesController : ControllerBase
     {
-        private readonly sg1Context _context;
+        private readonly Sg1Context _context;
 
-        public DevicesController(sg1Context context)
+        private ILoggerManager _logger;
+        private IRepositoryWrapper _repository;
+        private IMapper _mapper;
+
+        // Injecting logger and repository wrapper to the constructor
+        public DevicesController(ILoggerManager logger, IRepositoryWrapper repository, IMapper mapper)
         {
-            _context = context;
+            _logger = logger;
+            _repository = repository;
+            _mapper = mapper;
         }
 
-        // GET: api/Devices
+        // GET: api/device
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Device>>> GetDevice()
+        public IActionResult GetAllDevices()
         {
-            return await _context.Device.ToListAsync();
-        }
-
-        // GET: api/Devices/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Device>> GetDevice(int id)
-        {
-            var device = await _context.Device.FindAsync(id);
-
-            if (device == null)
+            try
             {
-                return NotFound();
-            }
+                var devices = _repository.Device.GetAllDevices();
 
-            return device;
+                _logger.LogInfo($"Returned all devices.");
+
+                var devicesResult = _mapper.Map<IEnumerable<DeviceDto>>(devices);
+                return Ok(devicesResult);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"!! Something went wrong inside GetAllOwners action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
-        // PUT: api/Devices/5
+        // GET: api/device/5
+        [HttpGet("{id}")]
+        public IActionResult GetDeviceById(int id)
+        {
+            try
+            {
+                var device = _repository.Device.GetDeviceById(id);
+
+                if (device == null)
+                {
+                    _logger.LogError($"Device with id: {id}, has not been found in db.");
+                    return NotFound();
+                }
+                else
+                {
+                    _logger.LogInfo($"Returned owner with id: {id}");
+
+                    var deviceResult = _mapper.Map<DeviceDto>(device);
+                    return Ok(deviceResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetDeviceById action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // GET: api/device/5/module
+        [HttpGet("{id}/module")]
+        public IActionResult GetDeviceWithDetails(int id)
+        {
+            try
+            {
+                var device = _repository.Device.GetDeviceWithDetails(id);
+
+                if (device == null)
+                {
+                    _logger.LogError($"Device with id: {id}, has not been found in db.");
+                    return NotFound();
+                }
+                else
+                {
+                    _logger.LogInfo($"Returned device with details for id: {id}");
+
+                    var deviceResult = _mapper.Map<DeviceDto>(device);
+                    return Ok(deviceResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetDeviceWithDetails action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // PUT: api/device/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
@@ -73,7 +138,7 @@ namespace MeteovaRestApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Devices
+        // POST: api/device
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
@@ -85,7 +150,7 @@ namespace MeteovaRestApi.Controllers
             return CreatedAtAction("GetDevice", new { id = device.DeviceId }, device);
         }
 
-        // DELETE: api/Devices/5
+        // DELETE: api/device/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Device>> DeleteDevice(int id)
         {

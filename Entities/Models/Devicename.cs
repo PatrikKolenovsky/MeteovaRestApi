@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MeteovaRestApi.Models
+namespace Entities.Models
 {
-    public partial class Comtype
+    public partial class Devicename
     {
-        public Comtype()
+        public Devicename()
         {
             Device = new HashSet<Device>();
         }
 
-        public int ComTypeId { get; set; }
+        public int DeviceNameId { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<Device> Device { get; set; }

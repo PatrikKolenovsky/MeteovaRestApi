@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MeteovaRestApi.Models
+namespace Entities.Models
 {
-    public partial class Valint
+    public partial class Valreal
     {
-        public long ValIntId { get; set; }
+        public long ValRealId { get; set; }
         public int VariableId { get; set; }
-        public int Value { get; set; }
+        public double Value { get; set; }
         public DateTime Time { get; set; }
 
         public virtual Variable Variable { get; set; }

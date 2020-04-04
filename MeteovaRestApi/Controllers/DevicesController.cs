@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Entities;
 using Entities.Models;
 using Contracts;
 using AutoMapper;
 using Entities.DataTransferObjects;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MeteovaRestApi.Controllers
 {
@@ -16,7 +13,6 @@ namespace MeteovaRestApi.Controllers
     [ApiController]
     public class DevicesController : ControllerBase
     {
-        private readonly Sg1Context _context;
 
         private ILoggerManager _logger;
         private IRepositoryWrapper _repository;
@@ -45,13 +41,13 @@ namespace MeteovaRestApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"!! Something went wrong inside GetAllOwners action: {ex.Message}");
+                _logger.LogError($"!! Something went wrong inside GetAllDevices action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
 
         // GET: api/device/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "DeviceById")]
         public IActionResult GetDeviceById(int id)
         {
             try
@@ -78,8 +74,8 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
-        // GET: api/device/5/module
-        [HttpGet("{id}/module")]
+        // GET: api/device/5/detailed
+        [HttpGet("{id}/detailed")]
         public IActionResult GetDeviceWithDetails(int id)
         {
             try
@@ -106,69 +102,108 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
-        // PUT: api/device/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // PUT: api/device/3
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDevice(int id, Device device)
+        public IActionResult UpdateDevice(int id, [FromBody] DeviceForUpdateDto device)
         {
-            if (id != device.DeviceId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(device).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DeviceExists(id))
+                if (device == null)
                 {
+                    _logger.LogError("Device object sent from client is null.");
+                    return BadRequest("Device object is null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("Invalid device object sent from client.");
+                    return BadRequest("Invalid model object");
+                }
+
+                var deviceEntity = _repository.Device.GetDeviceById(id);
+                if (deviceEntity == null)
+                {
+                    _logger.LogError($"Device with id: {id}, has not been found in db.");
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                _mapper.Map(device, deviceEntity);
+
+                _repository.Device.UpdateDevice(deviceEntity);
+                _repository.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside UpdateDevice action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         // POST: api/device
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Device>> PostDevice(Device device)
+        public IActionResult CreateDevice([FromBody] DeviceForCreationDto device)
         {
-            _context.Device.Add(device);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDevice", new { id = device.DeviceId }, device);
-        }
-
-        // DELETE: api/device/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Device>> DeleteDevice(int id)
-        {
-            var device = await _context.Device.FindAsync(id);
-            if (device == null)
+            try
             {
-                return NotFound();
+                if (device == null)
+                {
+                    _logger.LogError("Device object sent from client is null.");
+                    return BadRequest("Device object is null.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("Invalid device object sent from client.");
+                    return BadRequest("Invalid model object.");
+                }
+
+                var deviceEntity = _mapper.Map<Device>(device);
+
+                _repository.Device.CreateDevice(deviceEntity);
+                _repository.Save();
+
+                var createdDevice = _mapper.Map<DeviceDto>(deviceEntity);
+
+                return CreatedAtRoute("DeviceById", new { id = createdDevice.DeviceId }, createdDevice);
             }
-
-            _context.Device.Remove(device);
-            await _context.SaveChangesAsync();
-
-            return device;
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside CreateDevice action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
-        private bool DeviceExists(int id)
+        // DELETE: api/device/3
+        [HttpDelete("{id}")]
+        public IActionResult DeleteDevice(int id)
         {
-            return _context.Device.Any(e => e.DeviceId == id);
+            try
+            {
+                var device = _repository.Device.GetDeviceById(id);
+                if (device == null)
+                {
+                    _logger.LogError($"Device with id: {id}, has not been found in db.");
+                    return NotFound();
+                }
+
+                if (_repository.Module.ModuleByDevice(id).Any())
+                {
+                    _logger.LogError($"Cannot delete device with id: {id}. It has related module/s. Delete those modules first");
+                    return BadRequest("Cannot delete device. It has related module/s. Delete those modules first.");
+                }
+
+                _repository.Device.DeleteDevice(device);
+                _repository.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside DelteDevice action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

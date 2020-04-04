@@ -26,3 +26,11 @@ System.Collections.Generic.List`1[[Entities.Models.Device, Entities, Version=1.0
 2020-04-04 01:45:56.0809 INFO Returned device with details for id: 1
 2020-04-04 01:47:39.1758 INFO Returned owner with id: 1
 2020-04-04 01:47:50.3832 INFO Returned all devices.
+2020-04-04 19:51:38.9190 INFO Returned all devices.
+2020-04-04 20:03:40.0476 INFO Returned all devices.
+2020-04-04 20:11:49.4406 ERROR Something went wrong inside CreateDevice action: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+DeviceForCreationDto -> Device
+Entities.DataTransferObjects.DeviceForCreationDto -> Entities.Models.Device
+2020-04-04 20:54:42.5547 ERROR Cannot delete device with id: 1. It has related module/s. Delete those modules first

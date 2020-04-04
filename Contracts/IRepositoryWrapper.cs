@@ -8,6 +8,7 @@ namespace Contracts
     {
         IDeviceRepository Device { get; }
         IVariableRepository Variable { get; }
+        IModuleRepository Module { get; }
         void Save();
     }
 }

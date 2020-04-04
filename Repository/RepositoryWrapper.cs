@@ -8,6 +8,7 @@ namespace Repository
         private Sg1Context _sg1Context;
         private IDeviceRepository _device;
         private IVariableRepository _variable;
+        private IModuleRepository _module;
 
         public IDeviceRepository Device
         {
@@ -32,6 +33,19 @@ namespace Repository
                 }
 
                 return _variable;
+            }
+        }
+
+        public IModuleRepository Module
+        {
+            get
+            {
+                if (_variable == null)
+                {
+                    _module = new ModuleRepository(_sg1Context);
+                }
+
+                return _module;
             }
         }
 

@@ -8,5 +8,8 @@ namespace Contracts
         IEnumerable<Device> GetAllDevices();
         Device GetDeviceById(int deviceId);
         Device GetDeviceWithDetails(int deviceId);
+        void CreateDevice(Device device);
+        void UpdateDevice(Device device);
+        void DeleteDevice(Device device);
     }
 }

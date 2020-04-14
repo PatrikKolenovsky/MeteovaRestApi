@@ -11,5 +11,7 @@ namespace Entities.DataTransferObjects
         public int LocationId { get; set; }
         public int ModuleTypeId { get; set; }
         public string Description { get; set; }
+
+        public IEnumerable<VariableDto> Variable { get; set; }
     }
 }

@@ -9,8 +9,11 @@ namespace Entities.DataTransferObjects
         public int VariableId { get; set; }
         public string Name { get; set; }
         public string Pub { get; set; }
-        public int ModuleId { get; set; }
         public int VarDefId { get; set; }
         public string Description { get; set; }
+
+        public ICollection<ValintDto> Valint { get; set; }
+        public ICollection<ValrealDto> Valreal { get; set; }
+        public ICollection<ValstringDto> Valstring { get; set; }
     }
 }

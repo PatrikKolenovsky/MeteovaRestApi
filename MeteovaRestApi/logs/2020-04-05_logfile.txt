@@ -1,0 +1,12 @@
+2020-04-05 16:36:56.8710 ERROR Something went wrong inside GetDeviceById action: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure()' to the 'UseMySql' call.
+2020-04-05 16:37:02.3123 ERROR Something went wrong inside GetDeviceById action: An exception has been raised that is likely due to a transient failure. Consider enabling transient error resiliency by adding 'EnableRetryOnFailure()' to the 'UseMySql' call.
+2020-04-05 16:37:42.3747 INFO Returned owner with id: 1
+2020-04-05 16:39:00.4918 INFO Returned device with details for id: 1
+2020-04-05 16:40:10.5135 INFO Returned device with details for id: 1
+2020-04-05 17:03:16.4428 INFO Returned all devices.
+2020-04-05 17:05:51.1266 INFO Returned owner with id: 1
+2020-04-05 17:06:34.5098 INFO Returned device with details for id: 1
+2020-04-05 17:07:13.8143 INFO Returned device with details for id: 2
+2020-04-05 17:07:19.1234 INFO Returned device with details for id: 1
+2020-04-05 17:13:12.2117 INFO Returned owner with id: 1
+2020-04-05 17:13:19.4024 INFO Returned device with details for id: 1

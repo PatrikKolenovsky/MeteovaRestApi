@@ -1,8 +1,8 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using MeteovaRestApi.Extensions;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Repository
@@ -14,10 +14,9 @@ namespace Repository
         {
         }
 
-        public IEnumerable<Device> GetAllDevices()
+        public PagedList<Device> GetDevices(DeviceParameters deviceParameters)
         {
-            return FindAll()
-                .ToList();
+            return PagedList<Device>.ToPagedList(FindAll(), deviceParameters.PageNumber, deviceParameters.PageSize);
         }
 
         public Device GetDeviceById(int deviceId)

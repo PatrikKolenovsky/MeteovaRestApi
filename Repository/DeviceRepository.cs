@@ -16,7 +16,20 @@ namespace Repository
 
         public PagedList<Device> GetDevices(DeviceParameters deviceParameters)
         {
-            return PagedList<Device>.ToPagedList(FindAll(), deviceParameters.PageNumber, deviceParameters.PageSize);
+            var devices = FindAll();
+
+            SearchByLocation(ref devices, deviceParameters.Location);
+
+            return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
+        }
+
+        // Search implementation
+        private void SearchByLocation(ref IQueryable<Device> devices, string deviceLocation)
+        {
+            if (!devices.Any() || string.IsNullOrWhiteSpace(deviceLocation))
+                return;
+
+            devices = devices.Where(d => d.Device_location.ToLower().Contains(deviceLocation.Trim().ToLower()));
         }
 
         public Device GetDeviceById(int deviceId)

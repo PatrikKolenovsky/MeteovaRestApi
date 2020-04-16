@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\pkoli\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\pkoli\.Rider2019.2\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\pkoli\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\pkoli\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_MeteovaRestApi.1052798698.00" t="ExcludeRecursive" />
+    <e p="D:\Cs\MeteovaRestApi" t="IncludeFlat">
+      <e p="Contracts" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Contracts.csproj" t="IncludeRecursive" />
+        <e p="IDeviceRepository.cs" t="Include" />
+        <e p="ILoggerManager.cs" t="Include" />
+        <e p="IModuleReoisitory.cs" t="Include" />
+        <e p="IRepositoryBase.cs" t="Include" />
+        <e p="IRepositoryWrapper.cs" t="Include" />
+        <e p="IVariableRepository.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Contracts.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Entities" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DataTransferObjects" t="Include">
+          <e p="DeviceDto.cs" t="Include" />
+          <e p="DeviceForCreationDto.cs" t="Include" />
+          <e p="DeviceForUpdateDto.cs" t="Include" />
+          <e p="ModuleDto.cs" t="Include" />
+          <e p="ValintDto.cs" t="Include" />
+          <e p="ValrealDto.cs" t="Include" />
+          <e p="ValstringDto.cs" t="Include" />
+          <e p="VariableDto.cs" t="Include" />
+        </e>
+        <e p="Entities.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="Comtype.cs" t="Include" />
+          <e p="Device.cs" t="Include" />
+          <e p="Devicename.cs" t="Include" />
+          <e p="Location.cs" t="Include" />
+          <e p="Maker.cs" t="Include" />
+          <e p="Module.cs" t="Include" />
+          <e p="Moduletype.cs" t="Include" />
+          <e p="Valint.cs" t="Include" />
+          <e p="Valreal.cs" t="Include" />
+          <e p="Valstring.cs" t="Include" />
+          <e p="Vardef.cs" t="Include" />
+          <e p="Variable.cs" t="Include" />
+          <e p="Varname.cs" t="Include" />
+          <e p="Vartype.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Entities.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Sg1Context.cs" t="Include" />
+      </e>
+      <e p="LoggerService" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="LoggerManager.cs" t="Include" />
+        <e p="LoggerService.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="LoggerService.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="MeteovaRestApi" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="DevicesController.cs" t="Include" />
+          <e p="ModulesController.cs" t="Include" />
+          <e p="ValintsController.cs" t="Include" />
+          <e p="VariablesController.cs" t="Include" />
+          <e p="WeatherForecastController.cs" t="Include" />
+        </e>
+        <e p="extensions" t="Include">
+          <e p="ServiceExtensions.cs" t="Include" />
+        </e>
+        <e p="internal_logs" t="Include">
+          <e p="internallog.txt" t="Include" />
+        </e>
+        <e p="logs" t="Include">
+          <e p="2020-04-03_logfile.txt" t="Include" />
+          <e p="2020-04-04_logfile.txt" t="Include" />
+          <e p="2020-04-05_logfile.txt" t="Include" />
+          <e p="2020-04-13_logfile.txt" t="Include" />
+          <e p="2020-04-14_logfile.txt" t="Include" />
+        </e>
+        <e p="MappingProfile.cs" t="Include" />
+        <e p="MeteovaRestApi.csproj" t="IncludeRecursive" />
+        <e p="Migrations" t="Include">
+          <e p="20200331151532_FirstMigration.cs" t="Include" />
+          <e p="20200331151532_FirstMigration.Designer.cs" t="Include" />
+          <e p="sg1ContextModelSnapshot.cs" t="Include" />
+        </e>
+        <e p="nlog.config" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="MeteovaRestApi.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="WeatherForecast.cs" t="Include" />
+      </e>
+      <e p="MeteovaRestApi.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Repository" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DeviceRepository.cs" t="Include" />
+        <e p="ModuleRepository.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Repository.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Repository.csproj" t="IncludeRecursive" />
+        <e p="RepositoryBase.cs" t="Include" />
+        <e p="RepositoryWrapper.cs" t="Include" />
+        <e p="VariableRepository.cs" t="Include" />
+      </e>
+    </e>
+  </component>
+</project>

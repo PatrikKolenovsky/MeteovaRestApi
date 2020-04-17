@@ -36,6 +36,7 @@
           <e p="VariableDto.cs" t="Include" />
         </e>
         <e p="Entities.csproj" t="IncludeRecursive" />
+        <e p="MeteovaContext.cs" t="Include" />
         <e p="Models" t="Include">
           <e p="Comtype.cs" t="Include" />
           <e p="Device.cs" t="Include" />
@@ -59,7 +60,6 @@
             </e>
           </e>
         </e>
-        <e p="Sg1Context.cs" t="Include" />
       </e>
       <e p="LoggerService" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -96,6 +96,7 @@
           <e p="2020-04-05_logfile.txt" t="Include" />
           <e p="2020-04-13_logfile.txt" t="Include" />
           <e p="2020-04-14_logfile.txt" t="Include" />
+          <e p="2020-04-16_logfile.txt" t="Include" />
         </e>
         <e p="MappingProfile.cs" t="Include" />
         <e p="MeteovaRestApi.csproj" t="IncludeRecursive" />

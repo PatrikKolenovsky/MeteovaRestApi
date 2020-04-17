@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MeteovaRestApi.Migrations
 {
-    [DbContext(typeof(Sg1Context))]
+    [DbContext(typeof(MeteovaContext))]
     [Migration("20200331151532_FirstMigration")]
     partial class FirstMigration
     {

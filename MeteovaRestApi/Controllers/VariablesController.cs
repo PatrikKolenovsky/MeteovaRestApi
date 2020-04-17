@@ -14,9 +14,9 @@ namespace MeteovaRestApi.Controllers
     [ApiController]
     public class VariablesController : ControllerBase
     {
-        private readonly Sg1Context _context;
+        private readonly MeteovaContext _context;
 
-        public VariablesController(Sg1Context context)
+        public VariablesController(MeteovaContext context)
         {
             _context = context;
         }

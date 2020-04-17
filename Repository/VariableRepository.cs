@@ -8,8 +8,8 @@ namespace Repository
 {
     public class VariableRepository : RepositoryBase<Variable>, IVariableRepository
     {
-        public VariableRepository(Sg1Context sg1Context)
-            : base(sg1Context)
+        public VariableRepository(MeteovaContext meteovaContext)
+            : base(meteovaContext)
         {
         }
 

@@ -1,3 +1,6 @@
 
 # Default ignored files
 /.idea.MeteovaRestApi/.idea/workspace.xml
+# Datasource local storage ignored files
+/.idea.MeteovaRestApi/.idea/dataSources.local.xml
+/.idea.MeteovaRestApi/.idea/dataSources/

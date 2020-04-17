@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MeteovaRestApi.Migrations
 {
-    [DbContext(typeof(Sg1Context))]
-    partial class sg1ContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MeteovaContext))]
+    partial class meteovaContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

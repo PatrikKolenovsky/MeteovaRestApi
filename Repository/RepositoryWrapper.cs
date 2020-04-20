@@ -5,7 +5,7 @@ namespace Repository
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private Sg1Context _sg1Context;
+        private MeteovaContext _meteovaContext;
         private IDeviceRepository _device;
         private IVariableRepository _variable;
         private IModuleRepository _module;
@@ -16,7 +16,7 @@ namespace Repository
             {
                 if (_device == null)
                 {
-                    _device = new DeviceRepository(_sg1Context);
+                    _device = new DeviceRepository(_meteovaContext);
                 }
 
                 return _device;
@@ -29,7 +29,7 @@ namespace Repository
             {
                 if (_variable == null)
                 {
-                    _variable = new VariableRepository(_sg1Context);
+                    _variable = new VariableRepository(_meteovaContext);
                 }
 
                 return _variable;
@@ -42,21 +42,21 @@ namespace Repository
             {
                 if (_variable == null)
                 {
-                    _module = new ModuleRepository(_sg1Context);
+                    _module = new ModuleRepository(_meteovaContext);
                 }
 
                 return _module;
             }
         }
 
-        public RepositoryWrapper(Sg1Context sg1Context)
+        public RepositoryWrapper(MeteovaContext meteovaContext)
         {
-            _sg1Context = sg1Context;
+            _meteovaContext = meteovaContext;
         }
 
         public void Save()
         {
-            _sg1Context.SaveChanges();
+            _meteovaContext.SaveChanges();
         }
 
     }

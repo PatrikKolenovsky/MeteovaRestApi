@@ -14,9 +14,9 @@ namespace MeteovaRestApi.Controllers
     [ApiController]
     public class ValintsController : ControllerBase
     {
-        private readonly Sg1Context _context;
+        private readonly MeteovaContext _context;
 
-        public ValintsController(Sg1Context context)
+        public ValintsController(MeteovaContext context)
         {
             _context = context;
         }

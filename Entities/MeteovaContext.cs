@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Entities
 {
-    public partial class Sg1Context : DbContext
+    public partial class MeteovaContext : DbContext
     {
 
-        public Sg1Context(DbContextOptions options)
+        public MeteovaContext(DbContextOptions options)
             : base(options)
         {
         }

@@ -36,8 +36,8 @@ namespace MeteovaRestApi.Extensions
 
         public static void ConfigureMySqlContext(this IServiceCollection services, IConfiguration config)
         {
-            var connectionString = config["ConnectionStrings:SG1Database"];
-            services.AddDbContext<Sg1Context>(o => o.UseMySql(connectionString));
+            var connectionString = config["ConnectionStrings:MeteovaDatabase"];
+            services.AddDbContext<MeteovaContext>(o => o.UseMySql(connectionString));
         }
 
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)

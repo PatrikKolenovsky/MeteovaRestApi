@@ -1,11 +1,12 @@
 ﻿using Entities.Models;
-using System.Collections.Generic;
+using MeteovaRestApi.Extensions;
+
 
 namespace Contracts
 {
     public interface IDeviceRepository : IRepositoryBase<Device>
     {
-        IEnumerable<Device> GetAllDevices();
+        PagedList<Device> GetDevices(DeviceParameters deviceParameters);
         Device GetDeviceById(int deviceId);
         Device GetDeviceWithDetails(int deviceId);
         void CreateDevice(Device device);

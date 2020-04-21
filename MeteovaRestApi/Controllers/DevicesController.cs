@@ -4,8 +4,8 @@ using Entities.Models;
 using Contracts;
 using AutoMapper;
 using Entities.DataTransferObjects;
-using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace MeteovaRestApi.Controllers
 {
@@ -26,22 +26,32 @@ namespace MeteovaRestApi.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/device
         [HttpGet]
-        public IActionResult GetAllDevices()
+        public IActionResult GetDevices([FromQuery] DeviceParameters deviceParameters)
         {
             try
             {
-                var devices = _repository.Device.GetAllDevices();
+                var devices = _repository.Device.GetDevices(deviceParameters);
 
-                _logger.LogInfo($"Returned all devices.");
+                var metadata = new
+                {
+                    devices.TotalCount,
+                    devices.PageSize,
+                    devices.CurrentPage,
+                    devices.TotalPages,
+                    devices.HasNext,
+                    devices.HasPrevious
+                };
 
-                var devicesResult = _mapper.Map<IEnumerable<DeviceDto>>(devices);
-                return Ok(devicesResult);
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+                _logger.LogInfo($"Returned {devices.TotalCount} devices from database.");
+
+                return Ok(devices);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"!! Something went wrong inside GetAllDevices action: {ex.Message}");
+                _logger.LogError($"!! Something went wrong inside GetDevices action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }

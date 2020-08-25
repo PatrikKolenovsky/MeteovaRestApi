@@ -41,6 +41,8 @@ namespace MeteovaRestApi
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.ConfigureMySqlContext(Configuration);
             services.AddMvc();
 

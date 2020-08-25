@@ -13,7 +13,6 @@ namespace MeteovaRestApi.Controllers
     [ApiController]
     public class DevicesController : ControllerBase
     {
-
         private ILoggerManager _logger;
         private IRepositoryWrapper _repository;
         private IMapper _mapper;
@@ -52,6 +51,37 @@ namespace MeteovaRestApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"!! Something went wrong inside GetDevices action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // GET: api/device/detail
+        [HttpGet("detail")]
+        public IActionResult GetDevicesWithDetails([FromQuery] DeviceParameters deviceParameters)
+        {
+            try
+            {
+                var devices = _repository.Device.GetDevicesWithDetails(deviceParameters);
+
+                var metadata = new
+                {
+                    devices.TotalCount,
+                    devices.PageSize,
+                    devices.CurrentPage,
+                    devices.TotalPages,
+                    devices.HasNext,
+                    devices.HasPrevious
+                };
+
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+                _logger.LogInfo($"Returned {devices.TotalCount} devices from database.");
+
+                return Ok(devices);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"!! Something went wrong inside GetDevicesWithDetails action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }

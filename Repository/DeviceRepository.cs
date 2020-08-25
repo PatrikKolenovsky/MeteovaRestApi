@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using AutoMapper;
+using Contracts;
 using Entities;
 using Entities.Models;
 using MeteovaRestApi.Extensions;
@@ -19,6 +20,15 @@ namespace Repository
             var devices = FindAll();
 
             SearchByLocation(ref devices, deviceParameters.Location);
+
+            return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
+        }
+
+        public PagedList<Device> GetDevicesWithDetails(DeviceParameters deviceParameters)
+        {
+            var devices = FindAll().Include(md => md.Module)
+                        .ThenInclude(var => var.Variable)
+                            .ThenInclude(vali => vali.Valint);
 
             return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
         }

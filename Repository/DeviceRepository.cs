@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Contracts;
+﻿using Contracts;
 using Entities;
 using Entities.Models;
 using MeteovaRestApi.Extensions;

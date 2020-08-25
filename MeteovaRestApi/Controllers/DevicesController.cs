@@ -6,6 +6,7 @@ using AutoMapper;
 using Entities.DataTransferObjects;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MeteovaRestApi.Controllers
 {
@@ -46,7 +47,9 @@ namespace MeteovaRestApi.Controllers
 
                 _logger.LogInfo($"Returned {devices.TotalCount} devices from database.");
 
-                return Ok(devices);
+                var devicesResult = _mapper.Map<IEnumerable<DeviceDto>>(devices);
+
+                return Ok(devicesResult);
             }
             catch (Exception ex)
             {
@@ -77,7 +80,9 @@ namespace MeteovaRestApi.Controllers
 
                 _logger.LogInfo($"Returned {devices.TotalCount} devices from database.");
 
-                return Ok(devices);
+                var devicesResult = _mapper.Map<IEnumerable<DeviceDto>>(devices);
+
+                return Ok(devicesResult);
             }
             catch (Exception ex)
             {

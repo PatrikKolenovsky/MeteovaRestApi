@@ -6,10 +6,8 @@ namespace Entities.DataTransferObjects
 {
     public class VariableDto
     {
-        public int VariableId { get; set; }
         public string Name { get; set; }
         public string Pub { get; set; }
-        public int VarDefId { get; set; }
         public string Description { get; set; }
 
         public ICollection<ValintDto> Valint { get; set; }

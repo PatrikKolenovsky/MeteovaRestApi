@@ -5,7 +5,8 @@ namespace Repository
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private MeteovaContext _meteovaContext;
+        private readonly MeteovaContext _meteovaContext;
+        private IEnvidataRepository _envidata;
         private IDeviceRepository _device;
         private IVariableRepository _variable;
         private IModuleRepository _module;
@@ -20,6 +21,19 @@ namespace Repository
                 }
 
                 return _device;
+            }
+        }
+
+        public IEnvidataRepository Envidata
+        {
+            get
+            {
+                if (_envidata == null)
+                {
+                    _envidata = new EnvidataRepository(_meteovaContext);
+                }
+
+                return _envidata;
             }
         }
 

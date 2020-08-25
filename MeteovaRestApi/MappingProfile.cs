@@ -25,6 +25,8 @@ namespace MeteovaRestApi
             CreateMap<DeviceForCreationDto, Device>();
 
             CreateMap<DeviceForUpdateDto, Device>();
+
+            CreateMap<Envidata, EnvidataDto>();
         }
     }
 }

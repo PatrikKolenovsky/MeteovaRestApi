@@ -14,6 +14,7 @@ namespace Entities
         public virtual DbSet<Comtype> Comtype { get; set; }
         public virtual DbSet<Device> Device { get; set; }
         public virtual DbSet<Devicename> Devicename { get; set; }
+        public virtual DbSet<Envidata> Envidata { get; set; }
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<Maker> Maker { get; set; }
         public virtual DbSet<Module> Module { get; set; }

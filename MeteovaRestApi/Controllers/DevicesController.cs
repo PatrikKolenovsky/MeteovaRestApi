@@ -14,9 +14,9 @@ namespace MeteovaRestApi.Controllers
     [ApiController]
     public class DevicesController : ControllerBase
     {
-        private ILoggerManager _logger;
-        private IRepositoryWrapper _repository;
-        private IMapper _mapper;
+        private readonly ILoggerManager _logger;
+        private readonly IRepositoryWrapper _repository;
+        private readonly IMapper _mapper;
 
         // Injecting logger and repository wrapper to the constructor
         public DevicesController(ILoggerManager logger, IRepositoryWrapper repository, IMapper mapper)
@@ -119,8 +119,8 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
-        // GET: api/device/5/detailed
-        [HttpGet("{id}/detailed")]
+        // GET: api/device/detailed/5
+        [HttpGet("detail/{id}")]
         public IActionResult GetDeviceWithDetails(int id)
         {
             try

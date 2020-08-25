@@ -1,6 +1,7 @@
 ﻿using Entities.Models;
 using MeteovaRestApi.Extensions;
 
+
 namespace Contracts
 {
     public interface IDeviceRepository : IRepositoryBase<Device>

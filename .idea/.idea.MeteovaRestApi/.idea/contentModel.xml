@@ -36,15 +36,21 @@
           <e p="VariableDto.cs" t="Include" />
         </e>
         <e p="Entities.csproj" t="IncludeRecursive" />
+        <e p="Helpers" t="Include">
+          <e p="PagedList.cs" t="Include" />
+        </e>
         <e p="MeteovaContext.cs" t="Include" />
         <e p="Models" t="Include">
           <e p="Comtype.cs" t="Include" />
           <e p="Device.cs" t="Include" />
           <e p="Devicename.cs" t="Include" />
+          <e p="DeviceParameters.cs" t="Include" />
           <e p="Location.cs" t="Include" />
           <e p="Maker.cs" t="Include" />
+          <e p="ModelParameters.cs" t="Include" />
           <e p="Module.cs" t="Include" />
           <e p="Moduletype.cs" t="Include" />
+          <e p="QueryStringParameters.cs" t="Include" />
           <e p="Valint.cs" t="Include" />
           <e p="Valreal.cs" t="Include" />
           <e p="Valstring.cs" t="Include" />
@@ -96,6 +102,7 @@
           <e p="2020-04-05_logfile.txt" t="Include" />
           <e p="2020-04-13_logfile.txt" t="Include" />
           <e p="2020-04-14_logfile.txt" t="Include" />
+          <e p="2020-04-15_logfile.txt" t="Include" />
           <e p="2020-04-16_logfile.txt" t="Include" />
         </e>
         <e p="MappingProfile.cs" t="Include" />

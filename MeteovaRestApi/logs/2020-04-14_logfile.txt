@@ -1,0 +1,16 @@
+2020-04-14 18:24:33.5279 INFO Returned device with details for id: 1
+2020-04-14 18:40:28.3764 INFO Returned all devices.
+2020-04-14 18:58:52.8749 INFO Returned 2 devices from database.
+2020-04-14 18:59:15.1430 INFO Returned 2 devices from database.
+2020-04-14 18:59:27.6198 INFO Returned 0 devices from database.
+2020-04-14 18:59:34.7492 INFO Returned 2 devices from database.
+2020-04-14 18:59:39.8378 INFO Returned 1 devices from database.
+2020-04-14 19:23:45.9697 INFO Returned 2 devices from database.
+2020-04-14 19:24:05.1933 INFO Returned 2 devices from database.
+2020-04-14 19:24:16.6204 INFO Returned 2 devices from database.
+2020-04-14 19:48:40.7639 INFO Returned device with details for id: 1
+2020-04-14 19:48:40.9675 ERROR Something went wrong inside GetDeviceWithDetails action: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+PagedList`1 -> DeviceDto
+MeteovaRestApi.Extensions.PagedList`1[[Entities.Models.Device, Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> Entities.DataTransferObjects.DeviceDto

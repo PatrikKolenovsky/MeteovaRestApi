@@ -12,48 +12,48 @@ namespace MeteovaRestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValintsController : ControllerBase
+    public class ModulesController : ControllerBase
     {
         private readonly MeteovaContext _context;
 
-        public ValintsController(MeteovaContext context)
+        public ModulesController(MeteovaContext context)
         {
             _context = context;
         }
 
-        // GET: api/Valints
+        // GET: api/Modules
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Valint>>> GetValint()
+        public async Task<ActionResult<IEnumerable<Module>>> GetModule()
         {
-            return await _context.Valint.ToListAsync();
+            return await _context.Module.ToListAsync();
         }
 
-        // GET: api/Valints/5
+        // GET: api/Modules/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Valint>> GetValint(long id)
+        public async Task<ActionResult<Module>> GetModule(int id)
         {
-            var valint = await _context.Valint.FindAsync(id);
+            var @module = await _context.Module.FindAsync(id);
 
-            if (valint == null)
+            if (@module == null)
             {
                 return NotFound();
             }
 
-            return valint;
+            return @module;
         }
 
-        // PUT: api/Valints/5
+        // PUT: api/Modules/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutValint(long id, Valint valint)
+        public async Task<IActionResult> PutModule(int id, Module @module)
         {
-            if (id != valint.ValIntId)
+            if (id != @module.ModuleId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(valint).State = EntityState.Modified;
+            _context.Entry(@module).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace MeteovaRestApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ValintExists(id))
+                if (!ModuleExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace MeteovaRestApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Valints
+        // POST: api/Modules
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Valint>> PostValint(Valint valint)
+        public async Task<ActionResult<Module>> PostModule(Module @module)
         {
-            _context.Valint.Add(valint);
+            _context.Module.Add(@module);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetValint", new { id = valint.ValIntId }, valint);
+            return CreatedAtAction("GetModule", new { id = @module.ModuleId }, @module);
         }
 
-        // DELETE: api/Valints/5
+        // DELETE: api/Modules/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Valint>> DeleteValint(long id)
+        public async Task<ActionResult<Module>> DeleteModule(int id)
         {
-            var valint = await _context.Valint.FindAsync(id);
-            if (valint == null)
+            var @module = await _context.Module.FindAsync(id);
+            if (@module == null)
             {
                 return NotFound();
             }
 
-            _context.Valint.Remove(valint);
+            _context.Module.Remove(@module);
             await _context.SaveChangesAsync();
 
-            return valint;
+            return @module;
         }
 
-        private bool ValintExists(long id)
+        private bool ModuleExists(int id)
         {
-            return _context.Valint.Any(e => e.ValIntId == id);
+            return _context.Module.Any(e => e.ModuleId == id);
         }
     }
 }

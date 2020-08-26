@@ -1,0 +1,19 @@
+2020-04-03 17:03:35.1356 INFO Here is info message from the controller.
+2020-04-03 17:03:35.1979 DEBUG Here is debug message from the controller.
+2020-04-03 17:03:35.1979 WARN Here is warn message from the controller.
+2020-04-03 17:03:35.2174 ERROR Here is error message from the controller.
+2020-04-03 17:28:49.1093 INFO Here is info message from the controller.
+2020-04-03 17:28:49.1501 DEBUG Here is debug message from the controller.
+2020-04-03 17:28:49.1501 WARN Here is warn message from the controller.
+2020-04-03 17:28:49.1501 ERROR Here is error message from the controller.
+2020-04-03 17:31:06.0932 INFO Here is info message from the controller.
+2020-04-03 17:31:06.1399 DEBUG Here is debug message from the controller.
+2020-04-03 17:31:06.1399 WARN Here is warn message from the controller.
+2020-04-03 17:31:06.1589 ERROR Here is error message from the controller.
+2020-04-03 17:33:14.7350 INFO Here is info message from the controller.
+2020-04-03 17:33:14.7822 DEBUG Here is debug message from the controller.
+2020-04-03 17:33:14.7910 WARN Here is warn message from the controller.
+2020-04-03 17:33:14.7910 ERROR Here is error message from the controller.
+2020-04-03 23:45:33.8743 INFO Returned all devices.
+2020-04-03 23:46:45.1033 INFO Returned all devices.
+2020-04-03 23:47:03.3399 INFO Returned all devices.

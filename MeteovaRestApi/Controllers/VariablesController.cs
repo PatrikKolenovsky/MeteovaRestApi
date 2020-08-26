@@ -12,48 +12,48 @@ namespace MeteovaRestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValintsController : ControllerBase
+    public class VariablesController : ControllerBase
     {
         private readonly MeteovaContext _context;
 
-        public ValintsController(MeteovaContext context)
+        public VariablesController(MeteovaContext context)
         {
             _context = context;
         }
 
-        // GET: api/Valints
+        // GET: api/Variables
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Valint>>> GetValint()
+        public async Task<ActionResult<IEnumerable<Variable>>> GetVariable()
         {
-            return await _context.Valint.ToListAsync();
+            return await _context.Variable.ToListAsync();
         }
 
-        // GET: api/Valints/5
+        // GET: api/Variables/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Valint>> GetValint(long id)
+        public async Task<ActionResult<Variable>> GetVariable(int id)
         {
-            var valint = await _context.Valint.FindAsync(id);
+            var variable = await _context.Variable.FindAsync(id);
 
-            if (valint == null)
+            if (variable == null)
             {
                 return NotFound();
             }
 
-            return valint;
+            return variable;
         }
 
-        // PUT: api/Valints/5
+        // PUT: api/Variables/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutValint(long id, Valint valint)
+        public async Task<IActionResult> PutVariable(int id, Variable variable)
         {
-            if (id != valint.ValIntId)
+            if (id != variable.VariableId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(valint).State = EntityState.Modified;
+            _context.Entry(variable).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace MeteovaRestApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ValintExists(id))
+                if (!VariableExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace MeteovaRestApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Valints
+        // POST: api/Variables
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Valint>> PostValint(Valint valint)
+        public async Task<ActionResult<Variable>> PostVariable(Variable variable)
         {
-            _context.Valint.Add(valint);
+            _context.Variable.Add(variable);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetValint", new { id = valint.ValIntId }, valint);
+            return CreatedAtAction("GetVariable", new { id = variable.VariableId }, variable);
         }
 
-        // DELETE: api/Valints/5
+        // DELETE: api/Variables/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Valint>> DeleteValint(long id)
+        public async Task<ActionResult<Variable>> DeleteVariable(int id)
         {
-            var valint = await _context.Valint.FindAsync(id);
-            if (valint == null)
+            var variable = await _context.Variable.FindAsync(id);
+            if (variable == null)
             {
                 return NotFound();
             }
 
-            _context.Valint.Remove(valint);
+            _context.Variable.Remove(variable);
             await _context.SaveChangesAsync();
 
-            return valint;
+            return variable;
         }
 
-        private bool ValintExists(long id)
+        private bool VariableExists(int id)
         {
-            return _context.Valint.Any(e => e.ValIntId == id);
+            return _context.Variable.Any(e => e.VariableId == id);
         }
     }
 }

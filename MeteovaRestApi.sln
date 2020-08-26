@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteovaRestApi", "MeteovaRestApi\MeteovaRestApi.csproj", "{2C290609-8D52-4707-BD01-F7926A7563CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeteovaRestApi", "MeteovaRestApi\MeteovaRestApi.csproj", "{2C290609-8D52-4707-BD01-F7926A7563CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{1F6D094C-640B-42A9-9FD1-16FF5E3B28CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{D345CADF-8684-47DD-B932-3409FBC86FE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{CCFC4314-03A2-47BD-A91E-EB86B84BD3BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{D7E58AA5-E71E-4D55-BC22-626B4C4F4239}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{2C290609-8D52-4707-BD01-F7926A7563CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C290609-8D52-4707-BD01-F7926A7563CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C290609-8D52-4707-BD01-F7926A7563CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F6D094C-640B-42A9-9FD1-16FF5E3B28CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F6D094C-640B-42A9-9FD1-16FF5E3B28CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F6D094C-640B-42A9-9FD1-16FF5E3B28CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F6D094C-640B-42A9-9FD1-16FF5E3B28CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D345CADF-8684-47DD-B932-3409FBC86FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D345CADF-8684-47DD-B932-3409FBC86FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D345CADF-8684-47DD-B932-3409FBC86FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D345CADF-8684-47DD-B932-3409FBC86FE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCFC4314-03A2-47BD-A91E-EB86B84BD3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCFC4314-03A2-47BD-A91E-EB86B84BD3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCFC4314-03A2-47BD-A91E-EB86B84BD3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCFC4314-03A2-47BD-A91E-EB86B84BD3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7E58AA5-E71E-4D55-BC22-626B4C4F4239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E58AA5-E71E-4D55-BC22-626B4C4F4239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E58AA5-E71E-4D55-BC22-626B4C4F4239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E58AA5-E71E-4D55-BC22-626B4C4F4239}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

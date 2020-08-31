@@ -25,9 +25,10 @@ namespace Repository
 
         public PagedList<Device> GetDevicesWithDetails(DeviceParameters deviceParameters)
         {
-            var devices = FindAll().Include(md => md.Module)
-                        .ThenInclude(var => var.Variable)
-                            .ThenInclude(vali => vali.Valint);
+            var devices = FindAll()
+                .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vint => vint.Valint)
+                .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vreal => vreal.Valreal)
+                .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vstring => vstring.Valstring);
 
             return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
         }
@@ -50,16 +51,10 @@ namespace Repository
         public Device GetDeviceWithDetails(int deviceId)
         {
             return FindByCondition(device => device.DeviceId.Equals(deviceId))
-                    .Include(md => md.Module)
-                        .ThenInclude(var => var.Variable)
-                            .ThenInclude(vali => vali.Valint)
-                    .Include(md => md.Module)
-                        .ThenInclude(var => var.Variable)
-                            .ThenInclude(valr => valr.Valreal)
-                    .Include(md => md.Module)
-                        .ThenInclude(var => var.Variable)
-                            .ThenInclude(vals => vals.Valstring)
-                    .FirstOrDefault();
+                    .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vali => vali.Valint)
+                    .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(valr => valr.Valreal)
+                    .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vals => vals.Valstring)
+                  .FirstOrDefault();
         }
 
         public void CreateDevice(Device device)

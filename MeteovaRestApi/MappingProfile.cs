@@ -10,8 +10,6 @@ namespace MeteovaRestApi
         {
             CreateMap<Device, DeviceDto>();
 
-            CreateMap<Device, DeviceDto>();
-
             CreateMap<Module, ModuleDto>();
 
             CreateMap<Variable, VariableDto>();

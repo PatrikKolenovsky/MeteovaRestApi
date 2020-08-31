@@ -66,6 +66,8 @@ namespace MeteovaRestApi.Controllers
             {
                 var devices = _repository.Device.GetDevicesWithDetails(deviceParameters);
 
+                var envidata = _repository.Envidata.GetEnvidata(deviceParameters);
+
                 var metadata = new
                 {
                     devices.TotalCount,
@@ -82,7 +84,9 @@ namespace MeteovaRestApi.Controllers
 
                 var devicesResult = _mapper.Map<IEnumerable<DeviceDto>>(devices);
 
-                return Ok(devicesResult);
+                var enviResult = _mapper.Map<IEnumerable<EnvidataDto>>(envidata);
+
+                return Ok(new { devicesResult, enviResult });
             }
             catch (Exception ex)
             {

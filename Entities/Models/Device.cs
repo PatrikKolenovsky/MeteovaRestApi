@@ -12,6 +12,7 @@ namespace Entities.Models
         }
 
         public int DeviceId { get; set; }
+        public string DeviceIDVar { get; set; }
         public int DeviceNameId { get; set; }
         public string Ip { get; set; }
         public int Port { get; set; }

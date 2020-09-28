@@ -68,10 +68,13 @@ namespace MeteovaRestApi.Controllers
 
                 var envidata = _repository.Envidata.GetEnvidata(deviceParameters);
 
+                int totalcount = devices.TotalCount + envidata.TotalCount;
+                int pagesize = devices.PageSize + envidata.PageSize;
+
                 var metadata = new
                 {
-                    devices.TotalCount,
-                    devices.PageSize,
+                    totalcount,
+                    pagesize,
                     devices.CurrentPage,
                     devices.TotalPages,
                     devices.HasNext,
@@ -80,7 +83,7 @@ namespace MeteovaRestApi.Controllers
 
                 Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
 
-                _logger.LogInfo($"Returned {devices.TotalCount} devices from database.");
+                _logger.LogInfo($"Returned {devices.TotalCount} devices plus {envidata.TotalCount} envidata devices from database.");
 
                 var devicesResult = _mapper.Map<IEnumerable<DeviceDto>>(devices);
 

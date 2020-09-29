@@ -22,9 +22,6 @@ namespace Entities.DataTransferObjects
         [Required(ErrorMessage = "ComTypeID is required")]
         public int ComTypeId { get; set; }
 
-        [Required(ErrorMessage = "InUse is required")]
-        public int InUse { get; set; }
-
         [StringLength(100, ErrorMessage = "Description cannot be longer than 100 characters")]
         public string Description { get; set; }
 

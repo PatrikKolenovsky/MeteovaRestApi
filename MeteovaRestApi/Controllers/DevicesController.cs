@@ -156,7 +156,7 @@ namespace MeteovaRestApi.Controllers
 
         // PUT: api/device/3
         [HttpPut("{id}")]
-        public IActionResult UpdateDevice(int id, [FromBody] DeviceForUpdateDto device)
+        public IActionResult UpdateDevice(int id, [FromBody] DeviceUpdateDto device)
         {
             try
             {
@@ -195,7 +195,7 @@ namespace MeteovaRestApi.Controllers
 
         // POST: api/device
         [HttpPost]
-        public IActionResult CreateDevice([FromBody] DeviceForCreationDto device)
+        public IActionResult CreateDevice([FromBody] DeviceCreateDto device)
         {
             try
             {

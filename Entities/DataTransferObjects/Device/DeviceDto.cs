@@ -15,7 +15,7 @@ namespace Entities.DataTransferObjects
         public int ComTypeId { get; set; }
         public bool InUse { get; set; }
         public string Description { get; set; }
-        public string Device_location { get; set; }
+        public string DeviceLocation { get; set; }
 
         public IEnumerable<ModuleDto> Module { get; set; }
     }

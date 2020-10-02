@@ -20,11 +20,13 @@ namespace MeteovaRestApi
 
             CreateMap<Valstring, ValstringDto>();
 
-            CreateMap<DeviceForCreationDto, Device>();
+            CreateMap<DeviceCreateDto, Device>();
 
-            CreateMap<DeviceForUpdateDto, Device>();
+            CreateMap<DeviceUpdateDto, Device>();
 
             CreateMap<Envidata, EnvidataDto>();
+
+            CreateMap<Devicename, DevicenameDto>();
         }
     }
 }

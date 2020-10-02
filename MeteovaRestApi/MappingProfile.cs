@@ -27,6 +27,8 @@ namespace MeteovaRestApi
             CreateMap<Envidata, EnvidataDto>();
 
             CreateMap<Devicename, DevicenameDto>();
+
+            CreateMap<Comtype, ComtypeDto>();
         }
     }
 }

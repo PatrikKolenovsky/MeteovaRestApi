@@ -16,11 +16,24 @@ namespace Repository
         {
         }
 
+        public void CreateDevicename(Devicename devicename)
+        {
+            Create(devicename);
+        }
+
+        public void DeleteDevicename(Devicename devicename)
+        {
+            Delete(devicename);
+        }
+
         public List<Devicename> GetAllDevicename()
         {
-            var deviceNames = FindAll().ToList();
+            return FindAll().ToList();
+        }
 
-            return deviceNames;
+        public void UpdateDevicename(Devicename devicename)
+        {
+            Update(devicename);
         }
     }
 }

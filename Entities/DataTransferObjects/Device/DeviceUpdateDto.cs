@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DataTransferObjects
+namespace Entities.DataTransferObjects.Device
 {
     public class DeviceUpdateDto
     {
@@ -9,6 +9,6 @@ namespace Entities.DataTransferObjects
         public string Description { get; set; }
 
         [StringLength(100, ErrorMessage = "Device location cannot be longer than 100 characters")]
-        public string DeviceLocation { get; set; }
+        public string Device_location { get; set; }
     }
 }

@@ -29,6 +29,11 @@ namespace Repository
             return FindAll().ToList();
         }
 
+        public Comtype GetComtypeById(int id)
+        {
+            return FindByCondition(com => com.ComTypeId == id).FirstOrDefault();
+        }
+
         public void UpdateComtype(Comtype comtype)
         {
             Update(comtype);

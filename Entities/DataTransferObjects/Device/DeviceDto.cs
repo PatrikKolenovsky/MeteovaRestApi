@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Entities.DataTransferObjects.Module;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.DataTransferObjects
+namespace Entities.DataTransferObjects.Device
 {
     public class DeviceDto
     {
@@ -15,7 +16,7 @@ namespace Entities.DataTransferObjects
         public int ComTypeId { get; set; }
         public bool InUse { get; set; }
         public string Description { get; set; }
-        public string DeviceLocation { get; set; }
+        public string Device_location { get; set; }
 
         public IEnumerable<ModuleDto> Module { get; set; }
     }

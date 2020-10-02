@@ -9,6 +9,7 @@ namespace Contracts
     public interface IDevicenameRepository
     {
         List<Devicename> GetAllDevicename();
+        Devicename GetDevicenameById(int id);
         void CreateDevicename(Devicename devicename);
         void UpdateDevicename(Devicename devicename);
         void DeleteDevicename(Devicename devicename);

@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Entities.Models;
 using Contracts;
 using AutoMapper;
-using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Device;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Entities.DataTransferObjects;
 
 namespace MeteovaRestApi.Controllers
 {

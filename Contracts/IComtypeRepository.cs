@@ -8,6 +8,7 @@ namespace Contracts
     public interface IComtypeRepository
     {
         List<Comtype> GetComtypes();
+        Comtype GetComtypeById(int id);
         void CreateComtype(Comtype comtype);
         void UpdateComtype(Comtype comtype);
         void DeleteComtype(Comtype comtype);

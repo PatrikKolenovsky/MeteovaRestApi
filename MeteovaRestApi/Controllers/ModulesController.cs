@@ -10,6 +10,7 @@ using Entities.Models;
 using AutoMapper;
 using Entities.DataTransferObjects;
 using Contracts;
+using Entities.DataTransferObjects.Module;
 
 namespace MeteovaRestApi.Controllers
 {
@@ -30,11 +31,11 @@ namespace MeteovaRestApi.Controllers
 
         // GET: api/Modules
         [HttpGet]
-        public IActionResult GetModule()
+        public IActionResult GetModules()
         {
             var modules = _repository.Module.GetModules();
 
-            var modulesResult = _mapper.Map<ModuleDto>(modules);
+            var modulesResult = _mapper.Map<IEnumerable<ModuleDto>>(modules);
 
             return Ok(modulesResult);
         }
@@ -112,7 +113,7 @@ namespace MeteovaRestApi.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public IActionResult CreateModule([FromBody] Module module)
+        public IActionResult CreateModule([FromBody] ModuleCreateDto module)
         {
             try
             {

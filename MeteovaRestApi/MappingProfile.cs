@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Comtype;
+using Entities.DataTransferObjects.Device;
+using Entities.DataTransferObjects.Devicename;
+using Entities.DataTransferObjects.Module;
 using Entities.Models;
 
 namespace MeteovaRestApi

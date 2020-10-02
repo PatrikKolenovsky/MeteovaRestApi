@@ -39,7 +39,7 @@ namespace Repository
             if (!devices.Any() || string.IsNullOrWhiteSpace(deviceLocation))
                 return;
 
-            devices = devices.Where(d => d.DeviceLocation.ToLower().Contains(deviceLocation.Trim().ToLower()));
+            devices = devices.Where(d => d.Device_location.ToLower().Contains(deviceLocation.Trim().ToLower()));
         }
 
         public Device GetDeviceById(int deviceId)

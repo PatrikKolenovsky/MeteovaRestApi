@@ -31,6 +31,11 @@ namespace Repository
             return FindAll().ToList();
         }
 
+        public Devicename GetDevicenameById(int id)
+        {
+            return FindByCondition(devn => devn.DeviceNameId == id).FirstOrDefault();
+        }
+
         public void UpdateDevicename(Devicename devicename)
         {
             Update(devicename);

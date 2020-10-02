@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Entities;
 using Entities.Models;
+using AutoMapper;
+using Entities.DataTransferObjects;
+using Contracts;
 
 namespace MeteovaRestApi.Controllers
 {
@@ -14,97 +17,131 @@ namespace MeteovaRestApi.Controllers
     [ApiController]
     public class ModulesController : ControllerBase
     {
-        private readonly MeteovaContext _context;
+        private readonly IRepositoryWrapper _repository;
+        private readonly IMapper _mapper;
+        private readonly ILoggerManager _logger;
 
-        public ModulesController(MeteovaContext context)
+        public ModulesController(IRepositoryWrapper repository, IMapper mapper, ILoggerManager logger)
         {
-            _context = context;
+            _repository = repository;
+            _mapper = mapper;
+            _logger = logger;
         }
 
         // GET: api/Modules
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Module>>> GetModule()
+        public IActionResult GetModule()
         {
-            return await _context.Module.ToListAsync();
+            var modules = _repository.Module.GetModules();
+
+            var modulesResult = _mapper.Map<ModuleDto>(modules);
+
+            return Ok(modulesResult);
         }
 
         // GET: api/Modules/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Module>> GetModule(int id)
+        public IActionResult GetModule(int id)
         {
-            var @module = await _context.Module.FindAsync(id);
-
-            if (@module == null)
+            try
             {
-                return NotFound();
-            }
+                var module = _repository.Module.GetModuleById(id);
 
-            return @module;
+                if (module == null)
+                {
+                    _logger.LogError($"Module with id: {id}, has not been found in db.");
+                    return NotFound();
+                }
+                else
+                {
+                    _logger.LogInfo($"Returned module with id: {id}");
+
+                    var moduleResult = _mapper.Map<ModuleDto>(module);
+                    return Ok(moduleResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetModuleById action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         // PUT: api/Modules/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutModule(int id, Module @module)
+        public IActionResult UpdateModule(int id, Module module)
         {
-            if (id != @module.ModuleId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(@module).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ModuleExists(id))
+                if (module == null)
                 {
+                    _logger.LogError("Module object sent from client is null.");
+                    return BadRequest("Module object is null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("Invalid module object sent from client.");
+                    return BadRequest("Invalid model object");
+                }
+
+                var moduleEntity = _repository.Module.GetModuleById(id);
+                if (moduleEntity == null)
+                {
+                    _logger.LogError($"Module with id: {id}, has not been found in db.");
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                _mapper.Map(module, moduleEntity);
+
+                _repository.Module.UpdateModule(moduleEntity);
+                _repository.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside UpdateModule action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         // POST: api/Modules
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Module>> PostModule(Module @module)
+        public IActionResult CreateModule([FromBody] Module module)
         {
-            _context.Module.Add(@module);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetModule", new { id = @module.ModuleId }, @module);
-        }
-
-        // DELETE: api/Modules/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Module>> DeleteModule(int id)
-        {
-            var @module = await _context.Module.FindAsync(id);
-            if (@module == null)
+            try
             {
-                return NotFound();
+                if (module == null)
+                {
+                    _logger.LogError("Module object sent from client is null.");
+                    return BadRequest("Module object is null.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogError("Invalid module object sent from client.");
+                    return BadRequest("Invalid model object.");
+                }
+
+                var moduleEntity = _mapper.Map<Module>(module);
+
+                _repository.Module.CreateModule(moduleEntity);
+                _repository.Save();
+
+                var createdModule = _mapper.Map<ModuleDto>(moduleEntity);
+
+                return CreatedAtRoute("ModuleById", new { id = createdModule.ModuleId }, createdModule);
             }
-
-            _context.Module.Remove(@module);
-            await _context.SaveChangesAsync();
-
-            return @module;
-        }
-
-        private bool ModuleExists(int id)
-        {
-            return _context.Module.Any(e => e.ModuleId == id);
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside CreateModule action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

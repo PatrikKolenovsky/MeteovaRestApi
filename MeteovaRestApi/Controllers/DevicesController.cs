@@ -113,7 +113,7 @@ namespace MeteovaRestApi.Controllers
                 }
                 else
                 {
-                    _logger.LogInfo($"Returned owner with id: {id}");
+                    _logger.LogInfo($"Returned device with id: {id}");
 
                     var deviceResult = _mapper.Map<DeviceDto>(device);
                     return Ok(deviceResult);

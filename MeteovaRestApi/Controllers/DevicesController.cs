@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Entities.Models;
 using Contracts;
 using AutoMapper;
-using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Device;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Entities.DataTransferObjects;
 
 namespace MeteovaRestApi.Controllers
 {
@@ -113,7 +114,7 @@ namespace MeteovaRestApi.Controllers
                 }
                 else
                 {
-                    _logger.LogInfo($"Returned owner with id: {id}");
+                    _logger.LogInfo($"Returned device with id: {id}");
 
                     var deviceResult = _mapper.Map<DeviceDto>(device);
                     return Ok(deviceResult);
@@ -156,7 +157,7 @@ namespace MeteovaRestApi.Controllers
 
         // PUT: api/device/3
         [HttpPut("{id}")]
-        public IActionResult UpdateDevice(int id, [FromBody] DeviceForUpdateDto device)
+        public IActionResult UpdateDevice(int id, [FromBody] DeviceUpdateDto device)
         {
             try
             {
@@ -195,7 +196,7 @@ namespace MeteovaRestApi.Controllers
 
         // POST: api/device
         [HttpPost]
-        public IActionResult CreateDevice([FromBody] DeviceForCreationDto device)
+        public IActionResult CreateDevice([FromBody] DeviceCreateDto device)
         {
             try
             {

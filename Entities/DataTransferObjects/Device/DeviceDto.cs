@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Entities.DataTransferObjects.Module;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.DataTransferObjects
+namespace Entities.DataTransferObjects.Device
 {
     public class DeviceDto
     {

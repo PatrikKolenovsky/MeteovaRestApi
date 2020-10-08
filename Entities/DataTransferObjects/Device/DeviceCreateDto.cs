@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DataTransferObjects
+namespace Entities.DataTransferObjects.Device
 {
-    public class DeviceForCreationDto
+    public class DeviceCreateDto
     {
         [Required(ErrorMessage = "DeviceNameId is required")]
         public int DeviceNameId { get; set; }

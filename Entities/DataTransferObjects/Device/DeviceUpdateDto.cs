@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Entities.DataTransferObjects
+namespace Entities.DataTransferObjects.Device
 {
-    public class DeviceForUpdateDto
+    public class DeviceUpdateDto
     {
 
         [StringLength(100, ErrorMessage = "Description cannot be longer than 100 characters")]

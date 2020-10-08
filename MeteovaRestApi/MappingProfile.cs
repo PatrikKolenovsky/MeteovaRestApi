@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Comtype;
+using Entities.DataTransferObjects.Device;
+using Entities.DataTransferObjects.Devicename;
+using Entities.DataTransferObjects.Module;
 using Entities.Models;
 
 namespace MeteovaRestApi
@@ -20,11 +24,15 @@ namespace MeteovaRestApi
 
             CreateMap<Valstring, ValstringDto>();
 
-            CreateMap<DeviceForCreationDto, Device>();
+            CreateMap<DeviceCreateDto, Device>();
 
-            CreateMap<DeviceForUpdateDto, Device>();
+            CreateMap<DeviceUpdateDto, Device>();
 
             CreateMap<Envidata, EnvidataDto>();
+
+            CreateMap<Devicename, DevicenameDto>();
+
+            CreateMap<Comtype, ComtypeDto>();
         }
     }
 }

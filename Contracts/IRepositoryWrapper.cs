@@ -10,6 +10,8 @@ namespace Contracts
         IEnvidataRepository Envidata { get; }
         IVariableRepository Variable { get; }
         IModuleRepository Module { get; }
+        IDevicenameRepository Devicename { get; }
+        IComtypeRepository Comtype { get; }
         void Save();
     }
 }

@@ -12,6 +12,7 @@ namespace Contracts
         IModuleRepository Module { get; }
         IDevicenameRepository Devicename { get; }
         IComtypeRepository Comtype { get; }
+        IModuletypeRepository Moduletype { get; }
         void Save();
     }
 }

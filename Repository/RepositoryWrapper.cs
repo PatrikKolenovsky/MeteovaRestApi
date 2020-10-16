@@ -12,6 +12,7 @@ namespace Repository
         private IModuleRepository _module;
         private IDevicenameRepository _devicename;
         private IComtypeRepository _comtype;
+        private IModuletypeRepository _moduletype;
 
         public IDeviceRepository Device
         {
@@ -86,6 +87,18 @@ namespace Repository
                     _comtype = new ComtypeRepository(_meteovaContext);
                 }
                 return _comtype;
+            }
+        }
+
+        public IModuletypeRepository Moduletype
+        {
+            get
+            {
+                if (_variable == null)
+                {
+                    _moduletype = new ModuletypeRepository(_meteovaContext);
+                }
+                return _moduletype;
             }
         }
 

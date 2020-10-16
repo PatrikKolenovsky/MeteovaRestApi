@@ -4,6 +4,7 @@ using Entities.DataTransferObjects.Comtype;
 using Entities.DataTransferObjects.Device;
 using Entities.DataTransferObjects.Devicename;
 using Entities.DataTransferObjects.Module;
+using Entities.DataTransferObjects.Moduletype;
 using Entities.Models;
 
 namespace MeteovaRestApi
@@ -33,6 +34,8 @@ namespace MeteovaRestApi
             CreateMap<Devicename, DevicenameDto>();
 
             CreateMap<Comtype, ComtypeDto>();
+
+            CreateMap<Moduletype, ModuletypeDto>();
         }
     }
 }

@@ -127,7 +127,7 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
-        // GET: api/device/detailed/5
+        // GET: api/device/detail/5
         [HttpGet("detail/{id}")]
         public IActionResult GetDeviceWithDetails(int id)
         {

@@ -18,7 +18,7 @@ namespace Repository
         {
             var devices = FindAll();
 
-            SearchByLocation(ref devices, deviceParameters.Location);
+            //SearchByLocation(ref devices, deviceParameters.Location);
 
             return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
         }
@@ -33,14 +33,14 @@ namespace Repository
             return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
         }
 
-        // Search implementation
+        /*// Search implementation
         private void SearchByLocation(ref IQueryable<Device> devices, string deviceLocation)
         {
             if (!devices.Any() || string.IsNullOrWhiteSpace(deviceLocation))
                 return;
 
-            devices = devices.Where(d => d.Device_location.ToLower().Contains(deviceLocation.Trim().ToLower()));
-        }
+            devices = FindAll().Include(loc => loc.Location).Where( .Where(d => d.LocationId.ToLower().Contains(deviceLocation.Trim().ToLower()));
+        }*/
 
         public Device GetDeviceById(int deviceId)
         {

@@ -26,6 +26,7 @@ namespace Repository
         public PagedList<Device> GetDevicesWithDetails(DeviceParameters deviceParameters)
         {
             var devices = FindAll()
+                .Include(loc => loc.Location)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vint => vint.Valint)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vreal => vreal.Valreal)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vstring => vstring.Valstring);
@@ -33,13 +34,13 @@ namespace Repository
             return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
         }
 
-        // Search implementation
+        
         private void SearchByLocation(ref IQueryable<Device> devices, string deviceLocation)
         {
             if (!devices.Any() || string.IsNullOrWhiteSpace(deviceLocation))
                 return;
 
-            devices = devices.Where(d => d.Device_location.ToLower().Contains(deviceLocation.Trim().ToLower()));
+            devices = FindAll().Include(loc => (loc.Location.Adress.Trim().ToLower()).Contains(deviceLocation.Trim().ToLower()));
         }
 
         public Device GetDeviceById(int deviceId)

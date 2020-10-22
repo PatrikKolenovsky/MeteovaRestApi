@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.DataTransferObjects
+namespace Entities.DataTransferObjects.Module
 {
     public class ModuleDto
     {

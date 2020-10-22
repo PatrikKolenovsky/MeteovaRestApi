@@ -10,6 +10,7 @@ namespace Repository
         private IDeviceRepository _device;
         private IVariableRepository _variable;
         private IModuleRepository _module;
+        private IModuletypeRepository _moduletype;
 
         public IDeviceRepository Device
         {
@@ -60,6 +61,18 @@ namespace Repository
                 }
 
                 return _module;
+            }
+        }
+
+        public IModuletypeRepository Moduletype
+        {
+            get
+            {
+                if (_variable == null)
+                {
+                    _moduletype = new ModuletypeRepository(_meteovaContext);
+                }
+                return _moduletype;
             }
         }
 

@@ -10,6 +10,7 @@ namespace Contracts
         IEnvidataRepository Envidata { get; }
         IVariableRepository Variable { get; }
         IModuleRepository Module { get; }
+        IModuletypeRepository Moduletype { get; }
         void Save();
     }
 }

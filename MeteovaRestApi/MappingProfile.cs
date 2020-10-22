@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Device;
+using Entities.DataTransferObjects.Module;
+using Entities.DataTransferObjects.Moduletype;
 using Entities.Models;
 
 namespace MeteovaRestApi
@@ -8,11 +11,14 @@ namespace MeteovaRestApi
     {
         public MappingProfile()
         {
+            // Device mapping
             CreateMap<Device, DeviceDto>();
+            CreateMap<DeviceCreateDto, Device>();
+            CreateMap<DeviceUpdateDto, Device>();
 
-            CreateMap<Device, DeviceDto>();
-
+            // Module mapping
             CreateMap<Module, ModuleDto>();
+            CreateMap<ModuleCreateDto, Module>();
 
             CreateMap<Variable, VariableDto>();
 
@@ -22,11 +28,11 @@ namespace MeteovaRestApi
 
             CreateMap<Valstring, ValstringDto>();
 
-            CreateMap<DeviceForCreationDto, Device>();
-
-            CreateMap<DeviceForUpdateDto, Device>();
-
             CreateMap<Envidata, EnvidataDto>();
+
+            // Moduletype mapping
+            CreateMap<Moduletype, ModuletypeDto>();
+            CreateMap<ModuletypeCreateDto, ModuletypeDto>();
         }
     }
 }

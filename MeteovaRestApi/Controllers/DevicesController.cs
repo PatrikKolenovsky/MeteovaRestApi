@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Entities.Models;
 using Contracts;
 using AutoMapper;
-using Entities.DataTransferObjects;
+using Entities.DataTransferObjects.Device;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Entities.DataTransferObjects;
 
 namespace MeteovaRestApi.Controllers
 {
@@ -66,10 +67,15 @@ namespace MeteovaRestApi.Controllers
             {
                 var devices = _repository.Device.GetDevicesWithDetails(deviceParameters);
 
+                var envidata = _repository.Envidata.GetEnvidata(deviceParameters);
+
+                int totalcount = devices.TotalCount + envidata.TotalCount;
+                int pagesize = devices.PageSize + envidata.PageSize;
+
                 var metadata = new
                 {
-                    devices.TotalCount,
-                    devices.PageSize,
+                    totalcount,
+                    pagesize,
                     devices.CurrentPage,
                     devices.TotalPages,
                     devices.HasNext,
@@ -78,11 +84,13 @@ namespace MeteovaRestApi.Controllers
 
                 Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
 
-                _logger.LogInfo($"Returned {devices.TotalCount} devices from database.");
+                _logger.LogInfo($"Returned {devices.TotalCount} devices plus {envidata.TotalCount} envidata devices from database.");
 
                 var devicesResult = _mapper.Map<IEnumerable<DeviceDto>>(devices);
 
-                return Ok(devicesResult);
+                var enviResult = _mapper.Map<IEnumerable<EnvidataDto>>(envidata);
+
+                return Ok(new { devicesResult, enviResult });
             }
             catch (Exception ex)
             {
@@ -106,7 +114,7 @@ namespace MeteovaRestApi.Controllers
                 }
                 else
                 {
-                    _logger.LogInfo($"Returned owner with id: {id}");
+                    _logger.LogInfo($"Returned device with id: {id}");
 
                     var deviceResult = _mapper.Map<DeviceDto>(device);
                     return Ok(deviceResult);
@@ -119,7 +127,7 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
-        // GET: api/device/detailed/5
+        // GET: api/device/detail/5
         [HttpGet("detail/{id}")]
         public IActionResult GetDeviceWithDetails(int id)
         {
@@ -149,7 +157,7 @@ namespace MeteovaRestApi.Controllers
 
         // PUT: api/device/3
         [HttpPut("{id}")]
-        public IActionResult UpdateDevice(int id, [FromBody] DeviceForUpdateDto device)
+        public IActionResult UpdateDevice(int id, [FromBody] DeviceUpdateDto device)
         {
             try
             {
@@ -188,7 +196,7 @@ namespace MeteovaRestApi.Controllers
 
         // POST: api/device
         [HttpPost]
-        public IActionResult CreateDevice([FromBody] DeviceForCreationDto device)
+        public IActionResult CreateDevice([FromBody] DeviceCreateDto device)
         {
             try
             {

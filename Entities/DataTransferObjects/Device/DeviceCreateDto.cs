@@ -4,8 +4,8 @@ namespace Entities.DataTransferObjects.Device
 {
     public class DeviceCreateDto
     {
-        [Required(ErrorMessage = "DeviceNameId is required")]
-        public int DeviceNameId { get; set; }
+        [StringLength(45, ErrorMessage = "Description cannot be longer than 45 characters")]
+        public string DeviceName { get; set; }
 
         [Required(ErrorMessage = "IP is required")]
         public string Ip { get; set; }
@@ -19,13 +19,7 @@ namespace Entities.DataTransferObjects.Device
         [Required(ErrorMessage = "ComServPort is required")]
         public int ComServPort { get; set; }
 
-        [Required(ErrorMessage = "ComTypeID is required")]
-        public int ComTypeId { get; set; }
-
-        [StringLength(100, ErrorMessage = "Description cannot be longer than 100 characters")]
+        [StringLength(45, ErrorMessage = "Description cannot be longer than 45 characters")]
         public string Description { get; set; }
-
-        [StringLength(100, ErrorMessage = "Device location cannot be longer than 100 characters")]
-        public string Device_location { get; set; }
     }
 }

@@ -18,12 +18,12 @@ namespace Repository
         public List<Module> GetModules()
         {
             return FindAll()
-                    .Include(x => x.ModuleType)
+                    .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
                     .ToList();
         }
         public Module GetModuleById(int id)
         {
-            return FindByCondition(module => module.ModuleId == id).Include(x => x.ModuleType).FirstOrDefault();
+            return FindByCondition(module => module.ModuleId == id).Include(x => x.ModuleType).ThenInclude(mk => mk.Maker).FirstOrDefault();
         }
         public void CreateModule(Module module)
         {

@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using Entities.Models;
 
-namespace Entities.DataTransferObjects.Module
+namespace Entities.DataTransferObjects.Moduletype
 {
-    public class ModuleCreateDto
+    public class ModuletypeUpdateDto
     {
-        [Required(ErrorMessage = "Name of the module is required!")]
         [StringLength(45, ErrorMessage = "Name cannot be longer than 45 characters")]
         public string Name { get; set; }
 
+        public int MakerId { get; set; }
+
         [StringLength(45, ErrorMessage = "Description cannot be longer than 45 characters")]
         public string Description { get; set; }
-
-        [Required(ErrorMessage = "DeviceId is required!")]
-        public int DeviceId { get; set; }
-
-        [Required(ErrorMessage = "ModuleTypeId required!")]
-        public int ModuleTypeId { get; set; }
     }
 }

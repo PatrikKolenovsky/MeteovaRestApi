@@ -20,10 +20,12 @@ namespace MeteovaRestApi
             // Module mapping
             CreateMap<Module, ModuleDto>();
             CreateMap<ModuleCreateDto, Module>();
+            CreateMap<ModuleUpdateDto, Module>();
 
             // Moduletype mapping
             CreateMap<Moduletype, ModuletypeDto>();
             CreateMap<ModuletypeCreateDto, Moduletype>();
+            CreateMap<ModuletypeUpdateDto, Moduletype>();
 
             // Others
             CreateMap<Variable, VariableDto>();

@@ -72,7 +72,7 @@ namespace MeteovaRestApi.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public IActionResult UpdateModule(int id, Module module)
+        public IActionResult UpdateModule(int id,[FromBody] ModuleUpdateDto module)
         {
             try
             {

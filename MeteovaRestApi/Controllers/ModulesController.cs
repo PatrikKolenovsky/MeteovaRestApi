@@ -41,8 +41,8 @@ namespace MeteovaRestApi.Controllers
         }
 
         // GET: api/Modules/5
-        [HttpGet("{id}")]
-        public IActionResult GetModule(int id)
+        [HttpGet("{id}", Name = "ModuleById")]
+        public IActionResult GetModuleById(int id)
         {
             try
             {

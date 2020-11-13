@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +28,13 @@ namespace Repository
 
         public Moduletype GetModuletypeById(int id)
         {
-            return FindByCondition(mt => mt.ModuleTypeId == id).FirstOrDefault();
+            return FindByCondition(mt => mt.ModuleTypeId == id).Include(mk => mk.Maker).FirstOrDefault();
         }
 
         public List<Moduletype> GetModuletypes()
         {
-            return FindAll().ToList();
+            return FindAll().Include(mk => mk.Maker)
+                .ToList();
         }
 
         public void UpdateModuletype(Moduletype module)

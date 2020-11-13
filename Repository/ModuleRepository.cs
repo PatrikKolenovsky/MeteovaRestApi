@@ -2,6 +2,7 @@
 using Entities;
 using Entities.Models;
 using MeteovaRestApi.Extensions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,11 +17,13 @@ namespace Repository
 
         public List<Module> GetModules()
         {
-            return FindAll().ToList();
+            return FindAll()
+                    .Include(x => x.ModuleType)
+                    .ToList();
         }
         public Module GetModuleById(int id)
         {
-            return FindByCondition(module => module.ModuleId == id).FirstOrDefault();
+            return FindByCondition(module => module.ModuleId == id).Include(x => x.ModuleType).FirstOrDefault();
         }
         public void CreateModule(Module module)
         {

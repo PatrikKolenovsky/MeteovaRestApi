@@ -38,7 +38,7 @@ namespace MeteovaRestApi.Controllers
         }
 
         // GET: api/Moduletype/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "ModuletypeById")]
         public IActionResult GetModuletype(int id)
         {
             try

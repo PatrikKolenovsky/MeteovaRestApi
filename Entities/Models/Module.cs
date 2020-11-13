@@ -12,7 +12,6 @@ namespace Entities.Models
 
         public int ModuleId { get; set; }
         public string Name { get; set; }
-        public int LocationId { get; set; }
         public int ModuleTypeId { get; set; }
         public int DeviceId { get; set; }
         public string Description { get; set; }

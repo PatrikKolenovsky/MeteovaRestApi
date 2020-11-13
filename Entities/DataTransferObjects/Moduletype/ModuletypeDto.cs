@@ -1,9 +1,4 @@
-﻿using Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Entities.DataTransferObjects.Moduletype
+﻿namespace Entities.DataTransferObjects.Moduletype
 {
     public class ModuletypeDto
     {
@@ -11,6 +6,6 @@ namespace Entities.DataTransferObjects.Moduletype
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public virtual Maker Maker { get; set; }
+        public virtual MakerDto.MakerDto Maker { get; set; }
     }
 }

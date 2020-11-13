@@ -28,7 +28,8 @@ namespace Repository
             var devices = FindAll()
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vint => vint.Valint)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vreal => vreal.Valreal)
-                .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vstring => vstring.Valstring);
+                .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vstring => vstring.Valstring)
+                .Include(md => md.Module).ThenInclude(mt => mt.ModuleType).ThenInclude(mk => mk.Maker);
 
             return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
         }

@@ -15,10 +15,17 @@ namespace Entities.DataTransferObjects.Module
         [StringLength(45, ErrorMessage = "Description cannot be longer than 45 characters")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Device required to create module!")]
-        public virtual Models.Device Device { get; set; }
+        [Required(ErrorMessage = "DeviceId is required!")]
+        public int DeviceId { get; set; }
+
+        [Required(ErrorMessage = "ModuleTypeId required!")]
+        public int ModuleTypeId { get; set; }
+
+        /*
+        [Required(ErrorMessage = "DeviceID required to create module!")]
+        public int Device.DeviceDto DeviceId { get; set; }
         
         [Required(ErrorMessage = "Module type is required to create module!")]
-        public virtual Models.Moduletype ModuleType { get; set; }
+        public int Moduletype.ModuletypeDto ModuleTypeId { get; set; }*/
     }
 }

@@ -11,5 +11,6 @@ namespace Entities.DataTransferObjects.Module
         public string Description { get; set; }
 
         public IEnumerable<VariableDto> Variable { get; set; }
+        public virtual Moduletype.ModuletypeDto ModuleType { get; set; }
     }
 }

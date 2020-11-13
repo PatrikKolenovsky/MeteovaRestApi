@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.DataTransferObjects.Device
 {
@@ -18,6 +19,16 @@ namespace Entities.DataTransferObjects.Device
 
         [Required(ErrorMessage = "ComServPort is required")]
         public int ComServPort { get; set; }
+
+        [Required(ErrorMessage = "Latitude is required")]
+        public double Latitude { get; set; }
+
+        [Required(ErrorMessage = "Longitude is required")]
+        public double Longitude { get; set; }
+
+        [Required(ErrorMessage = "Address is required")]
+        [StringLength(45, ErrorMessage = "Description cannot be longer than 45 characters")]
+        public string Address { get; set; }
 
         [StringLength(45, ErrorMessage = "Description cannot be longer than 45 characters")]
         public string Description { get; set; }

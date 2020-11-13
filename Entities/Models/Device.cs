@@ -19,9 +19,10 @@ namespace Entities.Models
         public int ComServPort { get; set; }
         public bool InUse { get; set; }
         public string Description { get; set; }
-        public int LocationId { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public string Address { get; set; }
 
-        public virtual Location Location { get; set; }
         public virtual ICollection<Module> Module { get; set; }
     }
 }

@@ -26,7 +26,6 @@ namespace Repository
         public PagedList<Device> GetDevicesWithDetails(DeviceParameters deviceParameters)
         {
             var devices = FindAll()
-                .Include(loc => loc.Location)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vint => vint.Valint)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vreal => vreal.Valreal)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vstring => vstring.Valstring);
@@ -40,7 +39,7 @@ namespace Repository
             if (!devices.Any() || string.IsNullOrWhiteSpace(deviceLocation))
                 return;
 
-            devices = FindAll().Include(loc => (loc.Location.Adress.Trim().ToLower()).Contains(deviceLocation.Trim().ToLower()));
+            devices = FindAll().Where(d => d.Address.Trim().ToLower().Contains(deviceLocation.Trim().ToLower()));
         }
 
         public Device GetDeviceById(int deviceId)

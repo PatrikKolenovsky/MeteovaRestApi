@@ -1,5 +1,4 @@
-﻿using Entities.DataTransferObjects.Location;
-using Entities.DataTransferObjects.Module;
+﻿using Entities.DataTransferObjects.Module;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,9 +15,10 @@ namespace Entities.DataTransferObjects.Device
         public int ComServPort { get; set; }
         public bool InUse { get; set; }
         public string Description { get; set; }
-        public int LocationId { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public string Address { get; set; }
 
-        public LocationDto Location { get; set; }
         public IEnumerable<ModuleDto> Module { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace Entities.Models
         public string Description { get; set; }
 
         public virtual Device Device { get; set; }
-        public virtual Location Location { get; set; }
         public virtual Moduletype ModuleType { get; set; }
         public virtual ICollection<Variable> Variable { get; set; }
     }

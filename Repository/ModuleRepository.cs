@@ -49,5 +49,10 @@ namespace Repository
         {
             Update(module);
         }
+
+        public List<Module> OtherModulesByDevice(int deviceId)
+        {
+            return FindAll().Where(md => md.DeviceId != deviceId).Include(x => x.ModuleType).ThenInclude(mk => mk.Maker).ToList();
+        }
     }
 }

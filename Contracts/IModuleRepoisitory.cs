@@ -7,8 +7,9 @@ namespace Contracts
     public interface IModuleRepository : IRepositoryBase<Module>
     {
         PagedList<Module> ModulesByDevice(int deviceId, ModuleParameters parameters);
+        List<Module> OtherModulesByDevice(int deviceId);
         Module ModuleByDevice(int deviceId, int id);
-        List<Module> GetModules();
+        List<Module> GetModules();        
         Module GetModuleById(int id);
         void CreateModule(Module module);
         void UpdateModule(Module module);

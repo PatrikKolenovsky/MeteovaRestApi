@@ -68,6 +68,34 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
+        // GET: api/Modules/device/5
+        [HttpGet("device/{deviceId}")]
+        public IActionResult GetOtherModulesByDevice(int deviceId)
+        {
+            try
+            {
+                var modules = _repository.Module.OtherModulesByDevice(deviceId);
+
+                if (modules == null)
+                {
+                    _logger.LogError($"There are no modules missing on device with id: {deviceId}");
+                    return NotFound();
+                }
+                else
+                {
+                    _logger.LogInfo($"Returned modules not connected to device id: {deviceId}");
+
+                    var modulesResult = _mapper.Map<IEnumerable<ModuleDto>>(modules);
+                    return Ok(modulesResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetOtherModulesByDevice action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
         // PUT: api/Modules/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

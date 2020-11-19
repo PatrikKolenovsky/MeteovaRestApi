@@ -8,7 +8,7 @@ namespace Contracts
     {
         PagedList<Module> ModulesByDevice(int deviceId, ModuleParameters parameters);
         List<Module> GetOtherModulesByDevice(int deviceId);
-        Module GetModuleByDevice(int deviceId);
+        List<Module> GetModuleByDevice(int deviceId);
         List<Module> GetModules();        
         Module GetModuleById(int id);
         void CreateModule(Module module);

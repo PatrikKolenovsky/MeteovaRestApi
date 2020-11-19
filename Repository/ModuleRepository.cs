@@ -39,12 +39,12 @@ namespace Repository
             Delete(module);
         }
 
-        public Module GetModuleByDevice(int deviceId)
+        public List<Module> GetModuleByDevice(int deviceId)
         {
             return FindByCondition(md => md.DeviceId.Equals(deviceId))
                 .Include(d => d.Device)
                 .Include(type => type.ModuleType).ThenInclude(mk => mk.Maker)
-                .FirstOrDefault();
+                .ToList();
         }
 
         public PagedList<Module> ModulesByDevice(int deviceId, ModuleParameters parameters)

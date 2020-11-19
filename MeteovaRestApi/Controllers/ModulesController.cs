@@ -78,14 +78,14 @@ namespace MeteovaRestApi.Controllers
 
                 if (module == null)
                 {
-                    _logger.LogError($"There is no module connected to device id: {deviceId}.");
+                    _logger.LogError($"There is no module/s connected to device id: {deviceId}.");
                     return NotFound();
                 }
                 else
                 {
-                    _logger.LogInfo($"Returned module connected to device id: {deviceId}");
+                    _logger.LogInfo($"Returned module/s connected to device id: {deviceId}");
 
-                    var moduleResult = _mapper.Map<ModuleDto>(module);
+                    var moduleResult = _mapper.Map<IEnumerable<ModuleDto>>(module);
                     return Ok(moduleResult);
                 }
             }

@@ -28,7 +28,7 @@ namespace Repository
 
         public Moduletype GetModuletypeById(int id)
         {
-            return FindByCondition(mt => mt.ModuleTypeId == id).Include(mk => mk.Maker).FirstOrDefault();
+            return FindByCondition(mt => mt.ModuleTypeId.Equals(id)).Include(mk => mk.Maker).FirstOrDefault();
         }
 
         public List<Moduletype> GetModuletypes()

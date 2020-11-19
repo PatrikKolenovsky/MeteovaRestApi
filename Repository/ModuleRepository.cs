@@ -24,7 +24,7 @@ namespace Repository
         }
         public Module GetModuleById(int id)
         {
-            return FindByCondition(module => module.ModuleId == id)
+            return FindByCondition(module => module.ModuleId.Equals(id))
                 .Include(d => d.Device)
                 .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
                 .FirstOrDefault();
@@ -41,7 +41,7 @@ namespace Repository
 
         public Module GetModuleByDevice(int deviceId)
         {
-            return FindByCondition(md => md.DeviceId == deviceId)
+            return FindByCondition(md => md.DeviceId.Equals(deviceId))
                 .Include(d => d.Device)
                 .Include(type => type.ModuleType).ThenInclude(mk => mk.Maker)
                 .FirstOrDefault();

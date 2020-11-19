@@ -11,6 +11,7 @@ namespace Repository
         private IVariableRepository _variable;
         private IModuleRepository _module;
         private IModuletypeRepository _moduletype;
+        private IMakerRepository _maker;
 
         public IDeviceRepository Device
         {
@@ -73,6 +74,18 @@ namespace Repository
                     _moduletype = new ModuletypeRepository(_meteovaContext);
                 }
                 return _moduletype;
+            }
+        }
+
+        public IMakerRepository Maker
+        {
+            get
+            {
+                if (_variable == null)
+                {
+                    _maker = new MakerRepository(_meteovaContext);
+                }
+                return _maker;
             }
         }
 

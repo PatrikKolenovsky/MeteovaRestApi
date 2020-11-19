@@ -27,6 +27,11 @@ namespace MeteovaRestApi
             CreateMap<ModuletypeCreateDto, Moduletype>();
             CreateMap<ModuletypeUpdateDto, Moduletype>();
 
+            // Maker mapping
+            CreateMap<Maker, MakerDto>();
+            CreateMap<MakerCreateDto, Maker>();
+            CreateMap<MakerUpdateDto, Maker>();
+
             // Others
             CreateMap<Variable, VariableDto>();
 
@@ -37,8 +42,6 @@ namespace MeteovaRestApi
             CreateMap<Valstring, ValstringDto>();
 
             CreateMap<Envidata, EnvidataDto>();
-
-            CreateMap<Maker, MakerDto>();
         }
     }
 }

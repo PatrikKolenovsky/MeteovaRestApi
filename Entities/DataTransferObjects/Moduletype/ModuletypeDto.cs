@@ -6,6 +6,6 @@
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public virtual MakerDto.MakerDto Maker { get; set; }
+        public virtual Maker.MakerDto Maker { get; set; }
     }
 }

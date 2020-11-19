@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.DataTransferObjects.MakerDto
+namespace Entities.DataTransferObjects.Maker
 {
     public class MakerDto
     {

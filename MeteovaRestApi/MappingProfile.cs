@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
 using Entities.DataTransferObjects.Device;
-using Entities.DataTransferObjects.MakerDto;
+using Entities.DataTransferObjects.Maker;
 using Entities.DataTransferObjects.Module;
 using Entities.DataTransferObjects.Moduletype;
 using Entities.Models;

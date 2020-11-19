@@ -10,7 +10,8 @@ namespace Entities.DataTransferObjects.Module
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public Device.DeviceDto Device { get; set; }
         public IEnumerable<VariableDto> Variable { get; set; }
-        public virtual Moduletype.ModuletypeDto ModuleType { get; set; }
+        public Moduletype.ModuletypeDto ModuleType { get; set; }
     }
 }

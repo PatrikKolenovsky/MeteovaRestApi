@@ -70,11 +70,39 @@ namespace MeteovaRestApi.Controllers
 
         // GET: api/Modules/device/5
         [HttpGet("device/{deviceId}")]
+        public IActionResult GetModuleByDeviceId(int deviceId)
+        {
+            try
+            {
+                var module = _repository.Module.GetModuleByDevice(deviceId);
+
+                if (module == null)
+                {
+                    _logger.LogError($"There is no module connected to device id: {deviceId}.");
+                    return NotFound();
+                }
+                else
+                {
+                    _logger.LogInfo($"Returned module connected to device id: {deviceId}");
+
+                    var moduleResult = _mapper.Map<ModuleDto>(module);
+                    return Ok(moduleResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetModuleByDeviceId action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // GET: api/Modules/other/5
+        [HttpGet("other/{deviceId}", Name = "OtherModulesByDeviceId")]
         public IActionResult GetOtherModulesByDevice(int deviceId)
         {
             try
             {
-                var modules = _repository.Module.OtherModulesByDevice(deviceId);
+                var modules = _repository.Module.GetOtherModulesByDevice(deviceId);
 
                 if (modules == null)
                 {

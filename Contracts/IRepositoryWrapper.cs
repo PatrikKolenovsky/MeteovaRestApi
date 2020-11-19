@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Contracts
+﻿namespace Contracts
 {
     public interface IRepositoryWrapper
     {
@@ -11,6 +7,7 @@ namespace Contracts
         IVariableRepository Variable { get; }
         IModuleRepository Module { get; }
         IModuletypeRepository Moduletype { get; }
+        IMakerRepository Maker { get; }
         void Save();
     }
 }

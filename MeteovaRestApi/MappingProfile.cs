@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
 using Entities.DataTransferObjects.Device;
-using Entities.DataTransferObjects.MakerDto;
+using Entities.DataTransferObjects.Maker;
 using Entities.DataTransferObjects.Module;
 using Entities.DataTransferObjects.Moduletype;
 using Entities.Models;
@@ -27,6 +27,11 @@ namespace MeteovaRestApi
             CreateMap<ModuletypeCreateDto, Moduletype>();
             CreateMap<ModuletypeUpdateDto, Moduletype>();
 
+            // Maker mapping
+            CreateMap<Maker, MakerDto>();
+            CreateMap<MakerCreateDto, Maker>();
+            CreateMap<MakerUpdateDto, Maker>();
+
             // Others
             CreateMap<Variable, VariableDto>();
 
@@ -37,8 +42,6 @@ namespace MeteovaRestApi
             CreateMap<Valstring, ValstringDto>();
 
             CreateMap<Envidata, EnvidataDto>();
-
-            CreateMap<Maker, MakerDto>();
         }
     }
 }

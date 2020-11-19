@@ -18,12 +18,16 @@ namespace Repository
         public List<Module> GetModules()
         {
             return FindAll()
-                    .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
-                    .ToList();
+                .Include(d => d.Device)
+                .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
+                .ToList();
         }
         public Module GetModuleById(int id)
         {
-            return FindByCondition(module => module.ModuleId == id).Include(x => x.ModuleType).ThenInclude(mk => mk.Maker).FirstOrDefault();
+            return FindByCondition(module => module.ModuleId.Equals(id))
+                .Include(d => d.Device)
+                .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
+                .FirstOrDefault();
         }
         public void CreateModule(Module module)
         {
@@ -35,9 +39,12 @@ namespace Repository
             Delete(module);
         }
 
-        public Module ModuleByDevice(int deviceId, int id)
+        public Module GetModuleByDevice(int deviceId)
         {
-            throw new System.NotImplementedException();
+            return FindByCondition(md => md.DeviceId.Equals(deviceId))
+                .Include(d => d.Device)
+                .Include(type => type.ModuleType).ThenInclude(mk => mk.Maker)
+                .FirstOrDefault();
         }
 
         public PagedList<Module> ModulesByDevice(int deviceId, ModuleParameters parameters)
@@ -50,9 +57,12 @@ namespace Repository
             Update(module);
         }
 
-        public List<Module> OtherModulesByDevice(int deviceId)
+        public List<Module> GetOtherModulesByDevice(int deviceId)
         {
-            return FindByCondition(md => md.DeviceId != deviceId).Include(x => x.ModuleType).ThenInclude(mk => mk.Maker).ToList();
+            return FindByCondition(md => md.DeviceId != deviceId)
+                .Include(d => d.Device)
+                .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
+                .ToList();
         }
     }
 }

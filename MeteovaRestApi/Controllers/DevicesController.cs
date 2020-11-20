@@ -223,7 +223,7 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
-        /* Work with modules in progress
+        
         // DELETE: api/device/3
         [HttpDelete("{id}")]
         public IActionResult DeleteDevice(int id)
@@ -237,12 +237,6 @@ namespace MeteovaRestApi.Controllers
                     return NotFound();
                 }
 
-                if (_repository.Module.ModulesByDevice(id, [FromQuery] ModuleParameters moduleParameters).Any())
-                {
-                    _logger.LogError($"Cannot delete device with id: {id}. It has related module/s. Delete those modules first");
-                    return BadRequest("Cannot delete device. It has related module/s. Delete those modules first.");
-                }
-
                 _repository.Device.DeleteDevice(device);
                 _repository.Save();
 
@@ -254,6 +248,5 @@ namespace MeteovaRestApi.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        */
     }
 }

@@ -1,10 +1,9 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Repository
 {
@@ -27,12 +26,12 @@ namespace Repository
 
         public Maker GetMakerById(int id)
         {
-            return FindByCondition(m => m.MakerId.Equals(id)).FirstOrDefault();
+            return FindByCondition(m => m.MakerId.Equals(id)).AsNoTracking().FirstOrDefault();
         }
 
         public List<Maker> GetMakers()
         {
-            return FindAll().ToList();
+            return FindAll().AsNoTracking().ToList();
         }
 
         public void UpdateMaker(Maker maker)

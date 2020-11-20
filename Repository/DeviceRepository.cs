@@ -16,7 +16,7 @@ namespace Repository
 
         public PagedList<Device> GetDevices(DeviceParameters deviceParameters)
         {
-            var devices = FindAll();
+            var devices = FindAll().AsNoTracking();
 
             SearchByLocation(ref devices, deviceParameters.Location);
 
@@ -29,7 +29,7 @@ namespace Repository
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vint => vint.Valint)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vreal => vreal.Valreal)
                 .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vstring => vstring.Valstring)
-                .Include(md => md.Module).ThenInclude(mt => mt.ModuleType).ThenInclude(mk => mk.Maker);
+                .Include(md => md.Module).ThenInclude(mt => mt.ModuleType).ThenInclude(mk => mk.Maker).AsNoTracking();
 
             return PagedList<Device>.ToPagedList(devices, deviceParameters.PageNumber, deviceParameters.PageSize);
         }
@@ -40,12 +40,13 @@ namespace Repository
             if (!devices.Any() || string.IsNullOrWhiteSpace(deviceLocation))
                 return;
 
-            devices = FindAll().Where(d => d.Address.Trim().ToLower().Contains(deviceLocation.Trim().ToLower()));
+            devices = FindAll().Where(d => d.Address.Trim().ToLower().Contains(deviceLocation.Trim().ToLower())).AsNoTracking();
         }
 
         public Device GetDeviceById(int deviceId)
         {
             return FindByCondition(device => device.DeviceId.Equals(deviceId))
+                .AsNoTracking()
                 .FirstOrDefault();
         }
 
@@ -55,7 +56,8 @@ namespace Repository
                     .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vali => vali.Valint)
                     .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(valr => valr.Valreal)
                     .Include(md => md.Module).ThenInclude(var => var.Variable).ThenInclude(vals => vals.Valstring)
-                  .FirstOrDefault();
+                    .AsNoTracking()
+                    .FirstOrDefault();
         }
 
         public void CreateDevice(Device device)

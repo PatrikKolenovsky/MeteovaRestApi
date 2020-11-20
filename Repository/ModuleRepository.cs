@@ -20,6 +20,7 @@ namespace Repository
             return FindAll()
                 .Include(d => d.Device)
                 .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
+                .AsNoTracking()
                 .ToList();
         }
         public Module GetModuleById(int id)
@@ -27,6 +28,7 @@ namespace Repository
             return FindByCondition(module => module.ModuleId.Equals(id))
                 .Include(d => d.Device)
                 .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
+                .AsNoTracking()
                 .FirstOrDefault();
         }
         public void CreateModule(Module module)
@@ -44,6 +46,7 @@ namespace Repository
             return FindByCondition(md => md.DeviceId.Equals(deviceId))
                 .Include(d => d.Device)
                 .Include(type => type.ModuleType).ThenInclude(mk => mk.Maker)
+                .AsNoTracking()
                 .ToList();
         }
 
@@ -62,6 +65,7 @@ namespace Repository
             return FindByCondition(md => md.DeviceId != deviceId)
                 .Include(d => d.Device)
                 .Include(x => x.ModuleType).ThenInclude(mk => mk.Maker)
+                .AsNoTracking()
                 .ToList();
         }
     }

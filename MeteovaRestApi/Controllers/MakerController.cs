@@ -141,5 +141,30 @@ namespace MeteovaRestApi.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+        // DELETE: api/Maker/5
+        [HttpDelete("{id}")]
+        public IActionResult DeleteMaker(int id)
+        {
+            try
+            {
+                var maker = _repository.Maker.GetMakerById(id);
+                if (maker == null)
+                {
+                    _logger.LogError($"Maker with id: {id}, has not been found in db.");
+                    return NotFound();
+                }
+
+                _repository.Maker.DeleteMaker(maker);
+                _repository.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside DeleteMaker action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }

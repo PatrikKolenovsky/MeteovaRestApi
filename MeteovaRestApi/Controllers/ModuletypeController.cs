@@ -65,7 +65,7 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
-        // PUT: api/Modules/5
+        // PUT: api/Moduletype/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
@@ -108,7 +108,7 @@ namespace MeteovaRestApi.Controllers
             }
         }
 
-        // POST: api/Modules
+        // POST: api/Moduletype
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
@@ -140,6 +140,31 @@ namespace MeteovaRestApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"Something went wrong inside CreateModuletype action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        // DELETE: api/Moduletype/3
+        [HttpDelete("{id}")]
+        public IActionResult DeleteModuletype(int id)
+        {
+            try
+            {
+                var moduleType = _repository.Moduletype.GetModuletypeById(id);
+                if (moduleType == null)
+                {
+                    _logger.LogError($"Moduletype with id: {id}, has not been found in db.");
+                    return NotFound();
+                }
+
+                _repository.Moduletype.DeleteModuletype(moduleType);
+                _repository.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside DeleteModuletype action: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }

@@ -203,5 +203,30 @@ namespace MeteovaRestApi.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+        
+        // DELETE: api/Modules/3
+        [HttpDelete("{id}")]
+        public IActionResult DeleteModule(int id)
+        {
+            try
+            {
+                var module = _repository.Module.GetModuleById(id);
+                if (module == null)
+                {
+                    _logger.LogError($"Module with id: {id}, has not been found in db.");
+                    return NotFound();
+                }
+
+                _repository.Module.DeleteModule(module);
+                _repository.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside DeleteModule action: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }

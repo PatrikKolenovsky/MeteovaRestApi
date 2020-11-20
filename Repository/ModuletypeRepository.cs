@@ -2,10 +2,8 @@
 using Entities;
 using Entities.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Repository
 {
@@ -28,12 +26,12 @@ namespace Repository
 
         public Moduletype GetModuletypeById(int id)
         {
-            return FindByCondition(mt => mt.ModuleTypeId.Equals(id)).Include(mk => mk.Maker).FirstOrDefault();
+            return FindByCondition(mt => mt.ModuleTypeId.Equals(id)).Include(mk => mk.Maker).AsNoTracking().FirstOrDefault();
         }
 
         public List<Moduletype> GetModuletypes()
         {
-            return FindAll().Include(mk => mk.Maker)
+            return FindAll().Include(mk => mk.Maker).AsNoTracking()
                 .ToList();
         }
 

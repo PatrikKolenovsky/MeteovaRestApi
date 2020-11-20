@@ -2,9 +2,7 @@
 using Entities;
 using Entities.Models;
 using MeteovaRestApi.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
@@ -17,7 +15,7 @@ namespace Repository
 
         public PagedList<Envidata> GetEnvidata(DeviceParameters deviceParameters)
         {
-            var envidata = FindAll();
+            var envidata = FindAll().AsNoTracking();
 
             return PagedList<Envidata>.ToPagedList(envidata, deviceParameters.PageNumber, deviceParameters.PageSize);
         }

@@ -11,6 +11,8 @@ namespace Entities.DataTransferObjects.Module
 
         public int DeviceId { get; set; }
 
+        //public Device.DeviceDto DeviceId { get; set; }
+
         [StringLength(45, ErrorMessage = "ComServIp cannot be longer than 45 characters")]
         public string Description { get; set; }
     }

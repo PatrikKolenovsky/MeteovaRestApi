@@ -173,6 +173,8 @@ namespace MeteovaRestApi.Controllers
                     return NotFound();
                 }
 
+                deviceEntity.Module = null;
+
                 _mapper.Map(device, deviceEntity);
 
                 _repository.Device.UpdateDevice(deviceEntity);

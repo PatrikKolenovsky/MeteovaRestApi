@@ -92,6 +92,8 @@ namespace MeteovaRestApi.Controllers
                     return NotFound();
                 }
 
+                moduletypeEntity.Maker = null;
+
                 _mapper.Map(moduletype, moduletypeEntity);
 
                 _repository.Moduletype.UpdateModuletype(moduletypeEntity);
